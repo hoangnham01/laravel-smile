@@ -1,0 +1,220 @@
+@import "../varible";
+@import "../mixins";
+
+.login {
+  background: #F7F7F7;
+}
+
+.login .fa-paw {
+  font-size: 26px;
+}
+
+a.hiddenanchor {
+  display: none;
+}
+
+.login_wrapper {
+  right: 0;
+  margin: 0 auto;
+  margin-top: 5%;
+  max-width: 350px;
+  position: relative;
+}
+
+.registration_form,
+.login_form {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+.none{
+  display: none;
+}
+
+.registration_form {
+  z-index: 21;
+  width: 100%;
+}
+
+.login_form {
+  z-index: 22;
+}
+
+#signup:target ~ .login_wrapper .registration_form,
+#signin:target ~ .login_wrapper .login_form {
+  z-index: 22;
+  @include css3-prefix(animation-name, fadeInLeft);
+  @include css3-prefix(animation-delay, 0.1s);
+}
+
+#signup:target ~ .login_wrapper .login_form,
+#signin:target ~ .login_wrapper .registration_form {
+  @include css3-prefix(animation-name, fadeOutLeft);
+}
+
+.animate {
+  @include css3-prefix(animation-duration, 0.5s);
+  @include css3-prefix(animation-timing-function, ease);
+  @include css3-prefix(animation-fill-mode, both);
+}
+
+/** /login **/
+
+/** signup **/
+.login_box {
+  padding: 20px;
+  margin: auto;
+}
+
+.left {
+  float: left;
+}
+
+.alignleft {
+  float: left;
+  margin-right: 15px;
+}
+
+.alignright {
+  float: right;
+  margin-left: 15px;
+}
+
+.clearfix:after, form:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.login_content {
+  margin: 0 auto;
+  padding: 25px 0 0;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px 0 $white;
+  min-width: 280px;
+  a, .btn-default:hover {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font: normal 25px Helvetica, Arial, sans-serif;
+    letter-spacing: -0.05em;
+    line-height: 20px;
+    margin: 10px 0 30px;
+    &:before, &:after {
+      content: "";
+      height: 1px;
+      position: absolute;
+      top: 10px;
+      width: 20%;
+    }
+    &:before {
+      @include background-linear-gradient(right, $color_gray_approx, $white_100, 0%, 100%);
+      left: 0;
+    }
+    &:after {
+      @include background-linear-gradient(left, $color_gray_approx, $white_100, 0%, 100%);
+
+      right: 0;
+    }
+  }
+  form {
+    margin: 20px 0;
+    position: relative;
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      @include css3-prefix(border-radius, 3px);
+      @include css3-prefix(box-shadow, '0 1px 0 #{$white}, 0 -2px 5px #{$black_8} inset');
+      border: 1px solid #c8c8c8;
+      color: #777;
+      margin: 0 0 20px;
+      width: 100%;
+      &:focus {
+        -webkit-box-shadow: 0 0 2px #AA77B4 inset;
+        -moz-box-shadow: 0 0 2px #ed1c24 inset;
+        -ms-box-shadow: 0 0 2px #ed1c24 inset;
+        -o-box-shadow: 0 0 2px #ed1c24 inset;
+        box-shadow: 0 0 2px #A97AAD inset;
+        background-color: $white;
+        border: 1px solid #A878AF;
+        outline: none;
+      }
+    }
+  }
+}
+.login-footer{
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  text-shadow: 0 1px 0 $white;
+  min-width: 280px;
+}
+
+#username {
+  background-position: 10px 10px !important
+}
+
+#password {
+  background-position: 10px -53px !important
+}
+
+.login_content form div a {
+  font-size: 12px;
+  margin: 10px 15px 0 0;
+}
+
+.reset_pass {
+  margin-top: 10px !important;
+}
+
+.login_content div .reset_pass {
+  margin-top: 13px !important;
+  margin-right: 39px;
+  float: right;
+}
+
+.separator {
+  border-top: 1px solid #D8D8D8;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.button {
+  @include background-linear-gradient(top, $color_white_lilac_approx, $color_gallery_approx2, 0%, 100%);
+  @include css3-prefix(box-shadow, '0 1px 2px #{$black_10} inset');
+  @include css3-prefix(border-radius, 0 0 5px 5px);
+
+  border-top: 1px solid #CFD5D9;
+  padding: 15px 0;
+}
+
+.login_content form input[type="submit"],
+#content form .submit {
+  float: left;
+  margin-left: 38px;
+}
+
+.button a {
+  background: $button_image_URL 0 -112px no-repeat;
+  color: #7E7E7E;
+  font-size: 17px;
+  padding: 2px 0 2px 40px;
+  text-decoration: none;
+  @include css3-prefix(transition, all 0.3s ease);
+}
+
+.button a:hover {
+  background-position: 0 -135px;
+  color: $color_cerulean_approx;
+}
+
+header {
+  width: 100%;
+}

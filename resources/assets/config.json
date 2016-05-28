@@ -1,0 +1,58 @@
+{
+  "backend": {
+    "styles" :{
+      "vendor" :[
+        "./resources/assets/vendors/bootstrap/dist/css/bootstrap.min.css",
+        "./resources/assets/vendors/font-awesome/css/font-awesome.min.css",
+        "./resources/assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
+        "./resources/assets/vendors/bootstrap-daterangepicker/daterangepicker.css",
+        "./resources/assets/vendors/normalize-css/normalize.css",
+        "./resources/assets/vendors/iCheck/skins/flat/green.css",
+        "./resources/assets/vendors/select2/dist/css/select2.min.css"
+      ],
+      "theme" : {
+        "file": ["./resources/assets/sass/backend/backend.scss"],
+        "watch": ["./resources/assets/sass/backend/**/*.scss"]
+      }
+    },
+    "scripts": {
+      "vendor": [
+        "./resources/assets/vendors/jquery/dist/jquery.min.js",
+        "./resources/assets/vendors/bootstrap/dist/js/bootstrap.min.js",
+        "./resources/assets/vendors/fastclick/lib/fastclick.js",
+        "./resources/assets/vendors/nprogress/nprogress.js",
+        "./resources/assets/vendors/iCheck/icheck.min.js",
+        "./resources/assets/vendors/moment/moment.js",
+        "./resources/assets/vendors/bootstrap-daterangepicker/daterangepicker.js",
+        "./resources/assets/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js",
+        "./resources/assets/vendors/parsleyjs/dist/parsley.min.js",
+        "./resources/assets/vendors/select2/dist/js/select2.min.js",
+        "./resources/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"
+      ],
+      "theme": [
+        "./resources/assets/js/backend/**/*.js"
+      ]
+    }
+  },
+  "frontend" :{
+    "styles" : {
+
+    },
+    "scripts": {
+
+    }
+  },
+  "fonts": [
+    "./resources/assets/vendors/bootstrap/fonts/*",
+    "./resources/assets/vendors/font-awesome/fonts/*"
+  ],
+  "images": [
+    "./resources/assets/images/*"
+  ],
+  "build": {
+    "js" :"public/assets/js",
+    "css": "./public/assets/css",
+    "fonts": "./public/assets/fonts",
+    "images": "./public/assets/images"
+  }
+}

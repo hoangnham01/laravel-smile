@@ -1,0 +1,4 @@
+{
+  "directory" : "resources/assets/vendors",
+  "":"jquery bootstrap font-awesome fastclick nprogress Chart.js bootstrap-progressbar iCheck flot bootstrap-daterangepicker skycons jquery-sparkline morris.js bootstrap-wysiwyg jquery.tagsinput switchery select2 autosize parsleyjs devbridge-autocomplete ion.rangeSlider normalize-css mjolnic-bootstrap-colorpicker jquery.inputmask jquery-knob cropper validator jQuery-Smart-Wizard dropzone pnotify fullcalendar jquery.easy-pie-chart starrr datatables.net datatables.net-bs datatables.net-buttons datatables.net-buttons-bs datatables.net-fixedheader datatables.net-fixedheader-bs datatables.net-keytable datatables.net-responsive datatables.net-responsive-bs datatables.net-scroller datatables.net-scroller-bs pdfmake jszip echarts malihu-custom-scrollbar-plugin"
+}
