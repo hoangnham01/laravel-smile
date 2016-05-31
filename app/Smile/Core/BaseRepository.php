@@ -2,7 +2,6 @@
 
 namespace App\Smile\Core;
 
-
 use DB;
 
 /**
@@ -11,9 +10,8 @@ use DB;
  */
 abstract class BaseRepository
 {
-
     /**
-     * var \Illuminate\Database\Eloquent\Model
+     * var \Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Model|\Eloquent
      */
     protected $model;
 
@@ -21,7 +19,7 @@ abstract class BaseRepository
      * @param array $filters
      * @param array $column
      *
-     * @return \Illuminate\Support\Collection Model collections
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getAll($filters = array(), $column = array('*'))
     {
@@ -34,7 +32,7 @@ abstract class BaseRepository
      * @param array $filters
      * @param array $column
      *
-     * @return \Illuminate\Support\Collection Model collections
+     * @return \Illuminate\Database\Eloquent\Model|static|null
      */
     public function getFirst($filters = array(), $column = array('*'))
     {
@@ -47,9 +45,10 @@ abstract class BaseRepository
      * Get item of model. If model not exist then it will throw an exception
      *
      * @param array $columns
-     * @param  int $id Model ID
+     * @param  int  $id Model ID
      *
-     * @return \Illuminate\Database\Eloquent\Model;
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function find($id, $columns = array('*'))
     {
@@ -60,9 +59,9 @@ abstract class BaseRepository
      * Get item of model
      *
      * @param array $columns
-     * @param  int $id Model ID
+     * @param  int  $id Model ID
      *
-     * @return \Illuminate\Database\Eloquent\Model;
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|null
      */
     public function getById($id, $columns = array('*'))
     {
@@ -77,10 +76,12 @@ abstract class BaseRepository
      * @param        $pageSize
      * @param  array $columns
      *
-     * @return \Illuminate\Support\Collection Model collections
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @throws \InvalidArgumentException
      */
-    public function getAllWithPaginate($filters = [], $pageSize = NUM_PER_PAGE, $columns = ['*'])
+    public function getAllWithPaginate($filters = [], $pageSize = null, $columns = ['*'])
     {
+        $pageSize = empty($pageSize) ? $this->getPerPage() : $pageSize;
         $model = $this->model;
         $this->filters($model, $filters);
         return $model->paginate($pageSize, $columns);
@@ -99,9 +100,11 @@ abstract class BaseRepository
     }
 
     /**
-     * Create multiple record.
+     * Insert a new record into the database.
+     *
      * @param array $data
-     * @return void
+     * @return bool
+     * @static
      */
     function createMultiple(array $data)
     {
@@ -139,7 +142,7 @@ abstract class BaseRepository
     }
 
     /**
-     * @param array $conditions
+     * @param array  $conditions
      * @param string $column
      *
      * @return mixed
@@ -154,10 +157,10 @@ abstract class BaseRepository
     /**
      * Increment a column's value by a given amount.
      *
-     * @param  array $conditions
+     * @param  array  $conditions
      * @param  string $column
-     * @param  int $amount
-     * @param  array $extra
+     * @param  int    $amount
+     * @param  array  $extra
      *
      * @return int
      */
@@ -171,10 +174,10 @@ abstract class BaseRepository
     /**
      * Decrement a column's value by a given amount.
      *
-     * @param  array $conditions
+     * @param  array  $conditions
      * @param  string $column
-     * @param  int $amount
-     * @param  array $extra
+     * @param  int    $amount
+     * @param  array  $extra
      *
      * @return int
      */
@@ -186,8 +189,8 @@ abstract class BaseRepository
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $model
-     * @param null $filters
+     * @param \Illuminate\Database\Eloquent\Model|\Eloquent $model
+     * @param null                                $filters
      *
      * @return \Illuminate\Support\Collection Model collections
      */
@@ -318,5 +321,19 @@ abstract class BaseRepository
     function rollBack()
     {
         DB::rollBack();
+    }
+
+    /**
+     * @return int
+     */
+    public function getPerPage()
+    {
+        $listPerPage = listPerPage();
+        $perPage = (int)request('per_page');
+        $key = array_search($perPage, $listPerPage);
+        if ($key === false) {
+            return NUM_PER_PAGE;
+        }
+        return $listPerPage[$key];
     }
 }

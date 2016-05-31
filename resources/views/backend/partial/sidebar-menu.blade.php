@@ -37,7 +37,7 @@
       <ul class="nav side-menu">
         <?php
           $___t= '_blank';
-          $___p = 'http://localhost/repositories/laravel-base/gentelella-master/production/';
+          $___p = 'http://localhost/smile.hoangnham.com/gentelella-master/production/';
         ?>
         @foreach($_sidebarMenu as $__item)
           {!! createMenuItemBackend($__item) !!}

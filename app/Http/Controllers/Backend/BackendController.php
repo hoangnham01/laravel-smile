@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class BackendController extends Controller
 {
+    protected $data;
+    protected $creator;
+    protected $updater;
+    protected $deleter;
+
     public function __construct()
     {
         parent::__construct();

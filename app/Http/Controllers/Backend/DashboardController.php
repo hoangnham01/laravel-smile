@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use  App\Http\Requests\Request;
+use Illuminate\Http\Request;
 
 class DashboardController extends BackendController
 {

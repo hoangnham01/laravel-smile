@@ -87,8 +87,7 @@ gulp.task('scripts::backend-theme', function () {
         .on('error', handleError)
         .pipe(gulpIf(_option.production, uglify()))
         .pipe(gulpIf(_option.sourcemaps, sourcemaps.write('./')))
-        .pipe(gulp.dest(_config.build.js))
-        .pipe(notify('scripts::backend-vendor'));
+        .pipe(gulp.dest(_config.build.js));
 });
 gulp.task('assets::fonts', function() {
     return gulp.src(_config.fonts)

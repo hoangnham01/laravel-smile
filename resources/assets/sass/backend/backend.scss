@@ -18,3 +18,26 @@
 
 
 @import "theme";
+
+.pagination{
+  margin: 0;
+}
+td,th{
+  &.numerical-order{
+    text-align: center;
+    width: 60px;
+  }
+  &.cell-action{
+    width: 90px;
+  }
+}
+td{
+  &.user-media{
+    img{
+      width: 65px;
+      height: 65px;
+      max-width: 100%;
+      border-radius: 50%;
+    }
+  }
+}

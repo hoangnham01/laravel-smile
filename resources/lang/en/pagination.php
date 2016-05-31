@@ -15,5 +15,7 @@ return [
 
     'previous' => '&laquo; Previous',
     'next'     => 'Next &raquo;',
+    'form_per_page' => 'Show %s entries',
+    'label' => 'Showing :from to :to of :total entries'
 
 ];

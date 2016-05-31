@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="{{ config('theme.setting.favicon') }}" />
   <link href="{{ asset('assets/css/backend-vendor.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/backend-theme.css') }}" rel="stylesheet">
+  <base href="{{ url('') }}">
   @yield('css')
 </head>
 <body class="layout-page">
@@ -16,7 +17,7 @@
 <!-- Vendor -->
 <script type="text/javascript" src="{{ asset('assets/js/backend-vendor.js') }}"></script>
 <!-- Custom Theme Scripts -->
-<script type="text/javascript" src="{{ asset('assets/js/backend-theme.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/backend-app.js') }}"></script>
 @yield('js')
 </body>
 </html>

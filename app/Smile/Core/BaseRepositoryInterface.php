@@ -9,7 +9,7 @@ interface BaseRepositoryInterface
      * @param array $filters
      * @param array $column
      *
-     * @return \Illuminate\Support\Collection Model collections
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getAll($filters = array(), $column = array('*'));
 
@@ -17,7 +17,7 @@ interface BaseRepositoryInterface
      * @param array $filters
      * @param array $column
      *
-     * @return \Illuminate\Support\Collection Model collections
+     * @return \Illuminate\Database\Eloquent\Model|static|null
      */
     public function getFirst($filters = array(), $column = array('*'));
 
@@ -27,7 +27,8 @@ interface BaseRepositoryInterface
      * @param array $columns
      * @param  int $id Model ID
      *
-     * @return \Illuminate\Database\Eloquent\Model;
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function find($id, $columns = array('*'));
 
@@ -37,7 +38,7 @@ interface BaseRepositoryInterface
      * @param array $columns
      * @param  int $id Model ID
      *
-     * @return \Illuminate\Database\Eloquent\Model;
+     * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|null
      */
     public function getById($id, $columns = array('*'));
 
@@ -48,7 +49,8 @@ interface BaseRepositoryInterface
      * @param        $pageSize
      * @param  array $columns
      *
-     * @return \Illuminate\Support\Collection Model collections
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @throws \InvalidArgumentException
      */
     public function getAllWithPaginate($filters = [], $pageSize = NUM_PER_PAGE, $columns = ['*']);
 
@@ -67,7 +69,7 @@ interface BaseRepositoryInterface
      *
      * @return mixed
      */
-    function createMultiple($data);
+    function createMultiple(array $data);
 
     /**
      * Update an exitst model
@@ -143,8 +145,7 @@ interface BaseRepositoryInterface
     function rollBack();
 
     /**
-     * Create multiple record.
-     * @param array $data
-     * @return void
+     * @return int
      */
+    public function getPerPage();
 }
