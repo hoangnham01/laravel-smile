@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Smile\Users\User;
+use App\Smile\Users\UserFormRequest;
 use Illuminate\Http\Request;
 use App\Smile\Users\Data;
 use App\Smile\Users\Creator;
@@ -19,6 +21,7 @@ class UserController extends BackendController implements CreatorListener, Updat
         $this->creator = $creator;
         $this->updater = $updater;
         $this->deleter = $deleter;
+        $this->indexRouter = 'backend.users.index';
         parent::__construct();
     }
 
@@ -27,29 +30,28 @@ class UserController extends BackendController implements CreatorListener, Updat
         return view('backend.users.index', $this->data->getDataBackend($request));
     }
 
-    public function show()
+    public function show(User $user)
     {
-
+        return $user;
     }
 
     public function create()
     {
-
+        return view('backend.users.create', $this->creator->dataCreate());
     }
 
-    public function store()
+    public function store(UserFormRequest $request)
     {
-
+        return $this->creator->userCreate($request, $this);
     }
 
-    public function edit()
+    public function edit(User $user)
     {
-
+        return view('backend.users.edit', $this->updater->dataEdit($user));
     }
 
-    public function update()
+    public function update(User $user, UserFormRequest $request)
     {
-
     }
 
     public function destroy()

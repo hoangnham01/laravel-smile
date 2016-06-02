@@ -11,7 +11,6 @@ class ProfileComposer
     public function __construct()
     {
         // Dependencies automatically resolved by service container...
-
     }
 
     /**

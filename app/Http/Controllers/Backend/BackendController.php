@@ -4,62 +4,25 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
-
 class BackendController extends Controller
 {
     protected $data;
     protected $creator;
     protected $updater;
     protected $deleter;
+    protected $indexRouter = 'backend.dashboard';
 
     public function __construct()
     {
         parent::__construct();
     }
-
-    public function index(Request $request)
-    {
-
-    }
-
-    public function show()
-    {
-
-    }
-
-    public function create()
-    {
-
-    }
-
-    public function store()
-    {
-
-    }
-
-    public function edit()
-    {
-
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function destroy()
-    {
-
-    }
-
     /**
      * @param array $result
      * @return mixed
      */
     public function createSuccessful($result = array())
     {
-
+        return redirect()->route($this->indexRouter)->with($result);
     }
 
     /**
@@ -68,7 +31,7 @@ class BackendController extends Controller
      */
     public function creationFailed($error)
     {
-
+        return redirect()->back()->with($error);
     }
 
     /**
@@ -77,7 +40,7 @@ class BackendController extends Controller
      */
     public function updaterSuccessful($result = array())
     {
-
+        return redirect()->route($this->indexRouter)->with($result);
     }
 
     /**
@@ -86,7 +49,7 @@ class BackendController extends Controller
      */
     public function updaterFailed($error)
     {
-
+        return redirect()->back()->with($error);
     }
 
     /**
@@ -95,7 +58,7 @@ class BackendController extends Controller
      */
     public function deleteSuccessful($result = array())
     {
-
+        return redirect()->route($this->indexRouter)->with($result);
     }
 
     /**
@@ -104,6 +67,6 @@ class BackendController extends Controller
      */
     public function deleteFailed($error)
     {
-
+        return redirect()->back()->with($error);
     }
 }

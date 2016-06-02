@@ -30,7 +30,8 @@ class Creator
     {
         $this->repository->beginTransaction();
         try {
-            $data = $request->only([]);
+            $data = $request->only(['username','email','password', 'full_name']);
+            $data['password'] = bcrypt($data['password']);
             $user = $this->repository->create($data);
             event('user.create', $user);
             $this->repository->commit();

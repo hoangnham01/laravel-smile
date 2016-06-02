@@ -4,13 +4,13 @@
 
   <div>
     <div class="row">
-
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
             <h2>Users
               <small>List users</small>
             </h2>
+            <a class="btn btn-primary pull-right">Create</a>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">

@@ -18,14 +18,14 @@ class Admin
     public function handle($request, Closure $next, $guard = null)
     {
 
-        if (Auth::guard($guard)->guest()) {
-            \Auth::loginUsingId(1);
-            /*if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->route('backend.login');
-            }*/
-        }
+//        if (!Auth::guard($guard)->guest()) {
+////            \Auth::loginUsingId(1);
+//            /*if ($request->ajax() || $request->wantsJson()) {
+//                return response('Unauthorized.', 401);
+//            } else {
+//                return redirect()->route('backend.login');
+//            }*/
+//        }
 
         return $next($request);
     }

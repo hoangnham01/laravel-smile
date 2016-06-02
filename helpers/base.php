@@ -48,33 +48,19 @@ function db($data)
     exit();
 }
 
-function adminActiveItemSidebar($slug = null, $class = 'active')
-{
-    if (!empty($slug) && is_array($slug)) {
-        foreach ($slug as $value) {
-            if (request()->is(ADMIN_PREFIX . '/' . $value)) {
-                return $class;
-            }
-        }
-    } else {
-        if (request()->is(ADMIN_PREFIX . '/' . $slug) || (empty($slug) && request()->is(ADMIN_PREFIX))) {
-            return $class;
-        }
-    }
-    return '';
-}
 
 function formHasError($key)
 {
-    $errors = Session::get('errors');
-    return (count($errors) && $errors->has($key)) ? ' has-error' : '';
+//    $errors = Session::get('errors');
+//    return (count($errors) && $errors->has($key)) ? ' has-error' : '';
 }
 
 
 function formAlertError($key, $class = 'parsley-required text-danger')
 {
-    $errors = Session::get('errors');
-    return empty($errors) ? null : $errors->first($key, '<ul class="list-unstyled parsley-errors-list filled" id="parsley-id-' . rand(1000, 2000) . '"><li class="' . $class . '">:message</li></ul>');
+//    $errors = Session::get('errors');
+//    return empty($errors) ? null : $errors->first($key, '<ul class="list-unstyled parsley-errors-list filled" id="parsley-id-' . rand(1000, 2000) . '"><li class="' . $class . '">:message</li></ul>');
+    return null;
 }
 
 
@@ -203,65 +189,6 @@ function checkRouteAccess($route)
 function hashRouteAccess($route)
 {
     IZeeRole::hashRouteAccess($route);
-}
-
-function adminSidebarItem($item)
-{
-    $sidebar = '';
-    if (empty($item['subs'])) {
-        if (!checkRouteAccess($item['route'])) {
-            return $sidebar;
-        }
-        $params = empty($item['params']) ? [] : $item['params'];
-        $label = '';
-        if (!empty($item['label'])) {
-            $label = '<div class="label label-' . $item['label']['type'] . ' pull-right">' . $item['label']['value'] . '</div>';
-        }
-        $sidebar .= '<li class="' . adminActiveItemSidebar($item['active']) . '"><a href="' . route($item['route'], $params) . '" title="' . $item['title'] . '"><em class="' . $item['icon'] . '"></em>' . $label . '<span>' . $item['title'] . '</span></a></li>';
-    } else {
-        $tmp = '';
-        foreach ($item['subs'] as $val) {
-            if (!checkRouteAccess($val['route'])) {
-//                            $sidebar .= $val['route'];
-                continue;
-            }
-            $params = empty($val['params']) ? [] : $val['params'];
-            $label = '';
-            if (!empty($val['label'])) {
-                $label = '<div class="label label-' . $val['label']['type'] . ' pull-right">' . $val['label']['value'] . '</div>';
-            }
-            $tmp .= '<li class="' . adminActiveItemSidebar($val['active']) . '"><a href="' . route($val['route'], $params) . '" title="' . $val['title'] . '">' . $label . '<span>' . $val['title'] . '</span></a></li>';
-        }
-        if (!empty($tmp)) {
-            $label = '';
-            if (!empty($item['label'])) {
-                $label = '<div class="label label-' . $item['label']['type'] . ' pull-right">' . $item['label']['value'] . '</div>';
-            }
-            $id = str_slug($item['title']) . rand(1, 1000);
-            $sidebar .= '<li class="' . adminActiveItemSidebar($item['active']) . '"><a href="#' . $id . '" title="' . $item['title'] . '" data-toggle="collapse"><em class="' . $item['icon'] . '"></em>' . $label . '<span>' . $item['title'] . '</span></a>';
-            $sidebar .= '<ul id="' . $id . '" class="nav sidebar-subnav collapse ' . adminActiveItemSidebar($item['active'], 'in') . '">';
-            $sidebar .= ' <li class="sidebar-subnav-header">' . $item['title'] . '</li>';
-            $sidebar .= $tmp;
-            $sidebar .= '</ul></li>';
-        }
-    }
-    return $sidebar;
-}
-
-function displayName($user)
-{
-    if (is_array($user)) {
-        return $user['last_name'] . ' ' . $user['first_name'];
-    } elseif (is_object($user)) {
-        return $user->last_name . ' ' . $user->first_name;
-    }
-    return '';
-}
-
-function getPerPage()
-{
-    $perPage = request()->input('per_page', NUM_PER_PAGE);
-    return $perPage <= NUM_PER_PAGE ? NUM_PER_PAGE : ($perPage >= 150 ? 150 : $perPage);
 }
 
 function getSortBy($allow = array())
@@ -489,94 +416,12 @@ function sanitizeGetValue($value)
  *  FILE FUNCTION
  *-----------------------------------------------------------------------------------------------------------
  */
-function deleteFile($file)
-{
-    if (File::exists($file)) {
-        File::delete($file);
-    }
-}
 
 function cleanNumberPhone($phone)
 {
     $phone = str_replace('.', '', $phone);
     $phone = str_replace(' ', '', $phone);
     return $phone;
-}
-
-function xml2array($xmlObject, $out = array())
-{
-    foreach ((array)$xmlObject as $index => $node)
-        $out[$index] = (is_object($node)) ? xml2array($node) : $node;
-
-    return $out;
-}
-
-
-function getSmsCode($id, $prefix = '')
-{
-    $number = $id;
-    if ($id < 1000) {
-        $number = str_pad($id, strlen(1000) - 1, '0', STR_PAD_LEFT);
-    }
-    return $prefix . $number;
-}
-
-function hiddenLastPhone($phone, $replace = 'xxx')
-{
-    return preg_replace("/([0-9]{" . (strlen($phone) - 3) . "})([0-9]{3})/", "$1" . $replace, $phone);
-}
-
-
-function formatDataOfProducts($products)
-{
-    if (!count($products)) {
-        return [];
-    }
-    $format = [];
-
-    foreach ($products as $product) {
-        if (empty($product['product_id'])) {
-            continue;
-        }
-        $tmp = $product;
-        unset($tmp['product_id']);
-        $format[$product['product_id']] = $tmp;
-    }
-    return $format;
-}
-
-
-function ballotTypeLable($type)
-{
-    if ($type == TYPE_BALLOT_PAYMENT) {
-        return 'Chi';
-    }
-    return 'Thu';
-}
-
-function getThumbFileUpload($file)
-{
-    $explode = explode('.', $file);
-    $ext = end($explode);
-    if (in_array($ext, ['gif', 'jpeg', 'jpg', 'png', 'bmp'])) {
-        return $file;
-    }
-    switch ($ext) {
-        case 'pdf':
-            return 'assets/thumbnails/pdf-icon.png';
-        case 'doc':
-        case 'docx':
-            return 'assets/thumbnails/word-doc-icon.png';
-        case 'xls':
-        case 'xlsx':
-            return 'assets/thumbnails/excel-xls-icon';
-        case 'zip':
-            return 'assets/thumbnails/zip-icon.png';
-        case 'rar':
-            return 'assets/thumbnails/rar-icon.png';
-        default:
-            return 'assets/thumbnails/no-icon.png';
-    }
 }
 
 function getDataFormSearch()
@@ -588,148 +433,6 @@ function getDataFormSearch()
     $data['orderBy'] = strtolower((string)$data['orderBy']) === 'asc' ? 'asc' : 'desc';
     return $data;
 }
-
-function vndText($amount)
-{
-    if ($amount <= 0) {
-        return $textnumber = "Tiền phải là số nguyên dương lớn hơn số 0";
-    }
-    $Text = array("không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín");
-    $TextLuythua = array("", "nghìn", "triệu", "tỷ", "ngàn tỷ", "triệu tỷ", "tỷ tỷ");
-    $textnumber = "";
-    $length = strlen($amount);
-
-    for ($i = 0; $i < $length; $i++)
-        $unread[$i] = 0;
-    for ($i = 0; $i < $length; $i++) {
-        $so = substr($amount, $length - $i - 1, 1);
-
-        if (($so == 0) && ($i % 3 == 0) && ($unread[$i] == 0)) {
-            for ($j = $i + 1; $j < $length; $j++) {
-                $so1 = substr($amount, $length - $j - 1, 1);
-                if ($so1 != 0)
-                    break;
-            }
-
-            if (intval(($j - $i) / 3) > 0) {
-                for ($k = $i; $k < intval(($j - $i) / 3) * 3 + $i; $k++)
-                    $unread[$k] = 1;
-            }
-        }
-    }
-
-    for ($i = 0; $i < $length; $i++) {
-        $so = substr($amount, $length - $i - 1, 1);
-        if ($unread[$i] == 1)
-            continue;
-
-        if (($i % 3 == 0) && ($i > 0))
-            $textnumber = $TextLuythua[$i / 3] . " " . $textnumber;
-
-        if ($i % 3 == 2)
-            $textnumber = 'trăm ' . $textnumber;
-
-        if ($i % 3 == 1)
-            $textnumber = 'mươi ' . $textnumber;
-
-
-        $textnumber = $Text[$so] . " " . $textnumber;
-    }
-
-    //Phai de cac ham replace theo dung thu tu nhu the nay
-    $textnumber = str_replace("không mươi", "lẻ", $textnumber);
-    $textnumber = str_replace("lẻ không", "", $textnumber);
-    $textnumber = str_replace("mươi không", "mươi", $textnumber);
-    $textnumber = str_replace("một mươi", "mười", $textnumber);
-    $textnumber = str_replace("mươi năm", "mươi lăm", $textnumber);
-    $textnumber = str_replace("mươi một", "mươi mốt", $textnumber);
-    $textnumber = str_replace("mười năm", "mười lăm", $textnumber);
-    return ucfirst($textnumber . " đồng chẵn");
-
-}
-
-
-function getCode($total, $prefix)
-{
-    return $prefix . date('ym') . str_pad($total + 1, MAX_COUNT_CODE, '0', STR_PAD_LEFT);
-}
-
-/*
- -
- - LABEL
- */
-function offerStatusLabel($status)
-{
-    switch ($status) {
-        case STATUS_OFFER_CREATE:
-            return 'Chờ xác nhận';
-        case STATUS_OFFER_CONFIRM:
-            return 'Đã duyệt';
-        case STATUS_OFFER_FINISH:
-            return 'Hoàn thành';
-        case STATUS_OFFER_CANCEL:
-            return 'Không được duyệt';
-        default:
-            return '';
-    }
-}
-
-function ballotStatusLabel($status)
-{
-    switch ($status) {
-        case STATUS_BALLOT_CREATE:
-            return 'Chờ duyệt';
-        case STATUS_BALLOT_CONFIRM:
-            return 'Đã duyệt';
-        case STATUS_BALLOT_FINISH:
-            return 'Hoàn thành';
-        case STATUS_BALLOT_CANCEL:
-            return 'Đã hủy';
-        default:
-            return '';
-    }
-}
-
-function invoiceStatusLabel($status)
-{
-    switch ($status) {
-        case STATUS_INVOICE_CREATE:
-            return 'Chờ duyệt';
-        case STATUS_INVOICE_FINISH:
-            return 'Hoàn thành';
-        case STATUS_INVOICE_CANCEL:
-            return 'Đã hủy';
-        default:
-            return '';
-    }
-}
-
-function getGenderLabel($gender)
-{
-    return $gender == GENDER_MALE ? 'Nam' : 'Nữ';
-}
-
-function getClassStatusLabel($status)
-{
-    if (in_array($status, [STATUS_OFFER_CREATE, STATUS_BALLOT_CREATE, STATUS_INVOICE_CREATE])) {
-        return 'warning';
-    }
-
-    if (in_array($status, [STATUS_OFFER_CONFIRM, STATUS_BALLOT_CONFIRM, STATUS_INVOICE_CONFIRM])) {
-        return 'info';
-    }
-
-    if (in_array($status, [STATUS_OFFER_FINISH, STATUS_BALLOT_FINISH, STATUS_INVOICE_FINISH])) {
-        return 'success';
-    }
-
-    if (in_array($status, [STATUS_OFFER_CANCEL, STATUS_BALLOT_CANCEL, STATUS_INVOICE_CANCEL])) {
-        return 'danger';
-    }
-
-    return '';
-}
-
 /***********************************************************************************************************************
  * ARRAY FUNCTION
  **********************************************************************************************************************/
@@ -766,52 +469,6 @@ function putCache($key, $value, $minutes)
 function forgotCache($key)
 {
     Cache::forget($key);
-}
-
-function getBaseMonthYearCondition()
-{
-    return array(
-        array(
-            'type'   => WHERE_MONTH,
-            'value'  => date('m'),
-            'column' => 'created_at',
-        ),
-        array(
-            'type'   => WHERE_YEAR,
-            'value'  => date('Y'),
-            'column' => 'created_at',
-        ),
-    );
-}
-
-
-function linkYoutubeEmbed($url)
-{
-    $pattern =
-        '%^# Match any youtube URL
-        (?:https?://)?  # Optional scheme. Either http or https
-        (?:www\.)?      # Optional www subdomain
-        (?:             # Group host alternatives
-          youtu\.be/    # Either youtu.be,
-        | youtube\.com  # or youtube.com
-          (?:           # Group path alternatives
-            /embed/     # Either /embed/
-          | /v/         # or /v/
-          | /watch\?v=  # or /watch\?v=
-          )             # End path alternatives.
-        )               # End host alternatives.
-        ([\w-]{10,12})  # Allow 10-12 for 11 char youtube id.
-        $%x';
-    $result = preg_match($pattern, $url, $matches);
-    if ($result != false && !empty($matches[1])) {
-        return 'https://www.youtube.com/embed/' . $matches[1];
-    }
-    return false;
-}
-
-function linkSoundCloudEmbed($url)
-{
-    return 'https://w.soundcloud.com/player/?url=' . $url . '&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true';
 }
 
 function getRouteName()
