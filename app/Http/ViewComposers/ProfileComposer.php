@@ -23,5 +23,6 @@ class ProfileComposer
     {
         $view->with('_user', \Auth::user());
         $view->with('_sidebarMenu', config('theme.menu-sidebar', []));
+        
     }
 }

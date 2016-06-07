@@ -2,6 +2,7 @@
 /**
  * Function helper of project
  */
+
 if(!function_exists('listPerPage')){
     function listPerPage(){
         return [15,25,50,100];

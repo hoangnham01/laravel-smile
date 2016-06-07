@@ -55,7 +55,8 @@
 
 <script>
   $(document).ready(function(){
-    $('.page-login a').click(function(){
+    $('.page-login a').click(function(e){
+      e.preventDefault();
       $('.registration_form,.login_form').slideToggle();
     });
     if(window.location.href.indexOf('#forgot-password') !== -1){

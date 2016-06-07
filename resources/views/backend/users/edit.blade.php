@@ -22,8 +22,7 @@
                 Username <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" name="username" id="username" required="required" value="{{ old('username', $user->username) }}" class="form-control col-md-7 col-xs-12">
-                {!! formAlertError('username') !!}
+                <input type="text" name="username" id="username" required="required" value="{{ old('username', $user->username) }}" disabled class="form-control col-md-7 col-xs-12">
               </div>
             </div>
             <div class="form-group">
@@ -33,23 +32,6 @@
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="email" id="email" name="email" required="required" value="{{ old('email', $user->email) }}" class="form-control col-md-7 col-xs-12">
                 {!! formAlertError('email') !!}
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
-                Password <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="password" id="password" name="password" required="required" class="form-control col-md-7 col-xs-12">
-                {!! formAlertError('password') !!}
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_confirmation">
-                Password confirm <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="password" id="password_confirmation" name="password_confirmation" required="required" class="form-control col-md-7 col-xs-12">
               </div>
             </div>
             <div class="form-group">

@@ -55,7 +55,7 @@
 
                       </td>
                       <td class="cell-action">
-                        <a class="btn btn-xs" href=""></a>
+                        <a class="btn btn-xs" href="{{ route('backend.users.edit', $item->id) }}">Edit</a>
                       </td>
                     </tr>
                   @endforeach

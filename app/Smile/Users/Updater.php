@@ -32,7 +32,7 @@ class Updater
     {
         $this->repository->beginTransaction();
         try {
-            $data = $request->only([]);
+            $data = $request->only(['email', 'full_name']);
             $this->repository->update($data, ['column' => 'id', 'value' => $user->id]);
             event('user.update', $user);
             $this->repository->commit();

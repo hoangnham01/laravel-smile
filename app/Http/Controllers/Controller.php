@@ -15,4 +15,9 @@ class Controller extends BaseController
     {
 
     }
+
+    public function xxx(\App\Smile\Users\UserFormRequest $request) {
+
+        return redirect()->to('http://google.com');
+    }
 }

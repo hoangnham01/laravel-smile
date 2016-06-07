@@ -10,16 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('layout', function(){
     return view(request('file', 'backend.dashboard.index'));
 });
 
 
-Route::group(['prefix' => BACKEND_PREFIX, 'namespace' => 'Backend', 'middleware' => ['web']], function () {
+
+Route::group(['prefix' => BACKEND_PREFIX, 'namespace' => 'Backend'], function () {
 
     Route::get('login', ['as' => 'backend.login', 'uses' => 'AuthController@getLogin']);
     Route::post('login', ['as' => 'backend.postLogin', 'uses' => 'AuthController@postLogin']);
@@ -33,4 +31,8 @@ Route::group(['prefix' => BACKEND_PREFIX, 'namespace' => 'Backend', 'middleware'
         Route::get('/', ['as' => 'backend.dashboard.index', 'uses' => 'DashboardController@index']);
 
     });
+});
+
+Route::get('/', function () {
+    return view('welcome');
 });

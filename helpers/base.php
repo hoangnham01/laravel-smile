@@ -20,48 +20,119 @@ if (!function_exists('customRouteName')) {
         return $routerName;
     }
 }
-function iz_debug($data)
-{
-    echo '<meta charset="utf-8"><pre>';
-    var_dump($data);
-    die;
+if (!function_exists('checkRoute')) {
+    function checkRoute($name)
+    {
+        // Cần check xem có quyền truy cập hay không?
+        return true;
+    }
 }
 
-function getLastQuery()
-{
-    $queries = DB::getQueryLog();
-    $last_query = end($queries);
-    echo '<meta charset="utf-8"><pre>' . print_r($last_query, 1);
-    die;
+if (!function_exists('linkActive')) {
+
+    function linkActive($slug = null, $prefix = null)
+    {
+        if (!is_null($slug) && is_array($slug)) {
+            foreach ($slug as $value) {
+                if (request()->is($prefix . $value)) {
+                    return 'active';
+                }
+            }
+        } else {
+            if (request()->is($prefix . $slug) || (empty($slug) && request()->is(BACKEND_PREFIX))) {
+                return 'active';
+            }
+        }
+        return '';
+    }
 }
 
-function getQueryLogs()
-{
-    DB::enableQueryLog();
-    echo '<meta charset="utf-8"><pre>' . print_r(DB::getQueryLog()) . '</pre>';
-    die;
+if (!function_exists('createSubMenuItemBackend')) {
+    function createSubMenuItemBackend($data)
+    {
+        $html = '';
+        if (is_array($data)) {
+            foreach ($data as $item) {
+                if (!empty($item['lang']) && Lang::has($item['lang'])) {
+                    $item['title'] = trans($item['lang']);
+                }
+                $item['active'] = isset($item['active']) ? $item['active'] : '/';
+                if (empty($item['sub'])) {
+                    if (isset($item['active'])) {
+                        $className = linkActive($item['active'], BACKEND_PREFIX);
+                    } else {
+                        $className = '';
+                    }
+                    if (isset($item['url'])) {
+                        $html .= '<li class="' . $className . '"><a href="' . $item['url'] . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '>' . $item['title'] . '</a></li>';
+                    } else {
+                        $item['param'] = isset($item['param']) && is_array($item['param']) ? $item['param'] : array();
+                        if (checkRoute($item['route'])) {
+                            $html .= '<li class="' . $className . '"><a href="' . route($item['route'], $item['param']) . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '>' . $item['title'] . '</a></li>';
+                        }
+                    }
+                } else {
+                    $tmp = createSubMenuItemBackend($item['sub']);
+                    $html .= empty($tmp) ? '' : '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a href="return javascript:void(0);">' . $item['title'] . '</a><ul class="nav child_menu">' . $tmp . '</ul></li>';
+                }
+            }
+        }
+        return empty($html) ? $html : '<ul class="nav child_menu">' . $html . '</ul>';
+    }
 }
 
-function db($data)
-{
-    echo '<meta charset="utf-8"><pre>' . print_r($data, 1);
-    exit();
+if(!function_exists('formInput')){
+
 }
 
+if (!function_exists('createMenuItemBackend')) {
+    function createMenuItemBackend($item)
+    {
+        $html = '';
+        if (isset($item['sub'])) {
+            if (!empty($item['lang']) && Lang::has($item['lang'])) {
+                $item['title'] = trans($item['lang']);
+            }
+            $item['active'] = isset($item['active']) ? $item['active'] : '/';
+            $html = createSubMenuItemBackend($item['sub']);
+            if (!empty($html)) {
+                $html = '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a><i class="' . $item['icon'] . '"></i>' . $item['title'] . ' <span class="fa fa-chevron-down"></span></a>' . $html . '</li>';
+            }
+        } elseif (isset($item['url'])) {
+            $html = '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a href="' . $item['url'] . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '><i class="' . $item['icon'] . '"></i>' . $item['title'] . '</a></li>';
+        } else {
+            $item['param'] = isset($item['param']) && is_array($item['param']) ? $item['param'] : array();
+            if (checkRoute($item['route'])) {
+                $html = '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a href="' . route($item['route'], $item['param']) . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '><i class="' . $item['icon'] . '"></i>' . $item['title'] . '</a></li>';
+            }
+        }
 
-function formHasError($key)
-{
-//    $errors = Session::get('errors');
-//    return (count($errors) && $errors->has($key)) ? ' has-error' : '';
+        return $html;
+    }
+}
+/*Form*/
+if(!function_exists('formHasError')){
+    function formHasError($key, $className = ' has-error')
+    {
+        if (Session::get('errors') instanceof \Illuminate\Support\ViewErrorBag) {
+            return Session::get('errors')->has($key) ? $className : null;
+        }
+        return null;
+    }
 }
 
-
-function formAlertError($key, $class = 'parsley-required text-danger')
-{
-//    $errors = Session::get('errors');
-//    return empty($errors) ? null : $errors->first($key, '<ul class="list-unstyled parsley-errors-list filled" id="parsley-id-' . rand(1000, 2000) . '"><li class="' . $class . '">:message</li></ul>');
-    return null;
+if(!function_exists('formAlertError')){
+    function formAlertError($key)
+    {
+        $errors = Session::get('errors');
+        if ($errors instanceof \Illuminate\Support\ViewErrorBag) {
+            return $errors->has($key) ? $errors->first($key, '<ul class="list-unstyled parsley-errors-list filled"><li class="parsley-required">:message</li></ul>') : null;
+        }
+        return null;
+    }
 }
+
+////////////////////////////////////////////////////////////////////////
 
 
 /**
@@ -115,48 +186,6 @@ if (!function_exists('getallheaders')) {
             }
         }
         return $headers;
-    }
-}
-
-if (!function_exists('getAllHeadersTest')) {
-    function getAllHeadersTest()
-    {
-        $requests = request()->header();
-        $headers = array();
-        if (!empty($requests)) {
-            $headers = array_map(function ($item) {
-                return isset($item[0]) ? $item[0] : '';
-            }, $requests);
-        }
-        return $headers;
-    }
-}
-
-function autoAddBaseURL($link = null)
-{
-    if (empty($link)) {
-        return null;
-    }
-    if (!filter_var($link, FILTER_VALIDATE_URL)) {
-        $link = url($link);
-    }
-    return $link;
-}
-
-function checkFilterUrl($list, $pagination = false)
-{
-    $url = array();
-    if ($pagination) {
-        foreach ($list as $item) {
-            if (Input::get($item)) $url[$item] = Input::get($item);
-        }
-        return $url;
-    } else {
-        $url = '';
-        foreach ($list as $item) {
-            if (Input::get($item)) $url = $url . ',' . $item . '=' . Input::get($item);
-        }
-        return ltrim($url, ',');
     }
 }
 
@@ -433,6 +462,7 @@ function getDataFormSearch()
     $data['orderBy'] = strtolower((string)$data['orderBy']) === 'asc' ? 'asc' : 'desc';
     return $data;
 }
+
 /***********************************************************************************************************************
  * ARRAY FUNCTION
  **********************************************************************************************************************/
@@ -522,130 +552,4 @@ function checkAccessRoute($name, $parameters = array(), $bool = false)
     }
     return $bool ? false : 'javascript:void(0);';;
 
-}
-
-/**
- * @param       $data
- *
- * @return null|string
- */
-function createSideBackend($data = array())
-{
-    $item = null;
-    if (empty($data['sub'])) {
-        $url = checkAccessRoute($data['route'], array(), true);
-        if ($url !== false) {
-            $item .= '<li class="' . activeItemSidebar($data['active']) . '">';
-            $item .= '<a href="' . $url . '">';
-            $item .= '<i class="fa ' . $data['icon'] . '"></i>';
-            $item .= '<span>' . $data['title'] . '</span>';
-            $item .= '</a></li>';
-        }
-    } elseif (is_array($data['sub'])) {
-        $tmp = null;
-        foreach ($data['sub'] as $val) {
-            $url = checkAccessRoute($val['route'], (empty($val['parameters']) ? array() : $val['parameters']), true);
-            if ($url !== false) {
-                $tmp .= '<li><a href="' . $url . '">';
-                $tmp .= '<i class="' . (empty($val['icon']) ? 'fa fa-circle-o' : $val['icon']) . '"></i>';
-                $tmp .= $val['title'];
-                $tmp .= '</a></li>';
-            }
-        }
-        if ($tmp !== null) {
-            $item .= '<li class="treeview ' . activeItemSidebar($data['active']) . '"><a href="#">';
-            $item .= '<i class="fa ' . $data['icon'] . '"></i>';
-            $item .= '<span>' . $data['title'] . '</span> <i class="fa fa-angle-left pull-right"></i></a>';
-            $item .= '<ul class="treeview-menu">';
-            $item .= $tmp;
-            $item .= '</ul>';
-        }
-    }
-    return $item;
-}
-
-if (!function_exists('checkRoute')) {
-    function checkRoute($name)
-    {
-        // Cần check xem có quyền truy cập hay không?
-        return true;
-    }
-}
-
-if (!function_exists('linkActive')) {
-
-    function linkActive($slug = null, $prefix = null)
-    {
-        if (!is_null($slug) && is_array($slug)) {
-            foreach ($slug as $value) {
-                if (request()->is($prefix . $value)) {
-                    return 'active';
-                }
-            }
-        } else {
-            if (request()->is($prefix . $slug) || (empty($slug) && request()->is(BACKEND_PREFIX))) {
-                return 'active';
-            }
-        }
-        return '';
-    }
-}
-if (!function_exists('createSubMenuItemBackend')) {
-    function createSubMenuItemBackend($data)
-    {
-        $html = '';
-        if (is_array($data)) {
-            foreach ($data as $item) {
-                if (!empty($item['lang']) && Lang::has($item['lang'])) {
-                    $item['title'] = trans($item['lang']);
-                }
-                $item['active'] = isset($item['active']) ? $item['active'] : '/';
-                if (empty($item['sub'])) {
-                    if(isset($item['active'])){
-                        $className = linkActive($item['active'], BACKEND_PREFIX);
-                    }else{
-                        $className = '';
-                    }
-                    if (isset($item['url'])) {
-                        $html .= '<li class="' . $className . '"><a href="' . $item['url'] . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '>' . $item['title'] . '</a></li>';
-                    } else {
-                        $item['param'] = isset($item['param']) && is_array($item['param']) ? $item['param'] : array();
-                        if (checkRoute($item['route'])) {
-                            $html .= '<li class="' . $className . '"><a href="' . route($item['route'], $item['param']) . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '>' . $item['title'] . '</a></li>';
-                        }
-                    }
-                } else {
-                    $tmp = createSubMenuItemBackend($item['sub']);
-                    $html .= empty($tmp) ? '' : '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a href="return javascript:void(0);">' . $item['title'] . '</a><ul class="nav child_menu">' . $tmp . '</ul></li>';
-                }
-            }
-        }
-        return empty($html) ? $html : '<ul class="nav child_menu">' . $html . '</ul>';
-    }
-}
-
-if (!function_exists('createMenuItemBackend')) {
-    function createMenuItemBackend($item)
-    {
-        $html = '';
-        if (isset($item['sub'])) {
-            if (!empty($item['lang']) && Lang::has($item['lang'])) {
-                $item['title'] = trans($item['lang']);
-            }
-            $item['active'] = isset($item['active']) ? $item['active'] : '/';
-            $html = createSubMenuItemBackend($item['sub']);
-            if(!empty($html)){
-                $html = '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a><i class="' . $item['icon'] . '"></i>' . $item['title'] . ' <span class="fa fa-chevron-down"></span></a>' . $html . '</li>';
-            }
-        } elseif (isset($item['url'])) {
-            $html = '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a href="' . $item['url'] . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '><i class="' . $item['icon'] . '"></i>' . $item['title'] . '</a></li>';
-        } else {
-            $item['param'] = isset($item['param']) && is_array($item['param']) ? $item['param'] : array();
-            if (checkRoute($item['route'])) {
-                $html = '<li class="' . linkActive($item['active'], BACKEND_PREFIX) . '"><a href="' . route($item['route'], $item['param']) . '" ' . (isset($item['target']) ? 'target="' . $item['target'] . '"' : '') . '><i class="' . $item['icon'] . '"></i>' . $item['title'] . '</a></li>';
-            }
-        }
-
-        return $html;
-    }
 }

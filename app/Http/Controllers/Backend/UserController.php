@@ -52,6 +52,7 @@ class UserController extends BackendController implements CreatorListener, Updat
 
     public function update(User $user, UserFormRequest $request)
     {
+        return $this->updater->userUpdate($request, $this, $user);
     }
 
     public function destroy()
