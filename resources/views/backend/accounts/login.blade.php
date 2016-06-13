@@ -8,14 +8,16 @@
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <form method="post" action="{{ route('backend.postLogin') }}">
+          <form method="post" data-parsley-validate action="{{ route('backend.postLogin') }}">
             {{ csrf_field() }}
             <h1>Login Form</h1>
-            <div>
-              <input type="text" name="username" class="form-control" placeholder="Username" required="" value="{{ old('username') }}"/>
+            <div class="group-input">
+              <input type="text" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}"/>
+              {!! formAlertError('username') !!}
             </div>
-            <div>
-              <input type="password" name="password" class="form-control" placeholder="Password" required="" value="{{ old('password') }}"/>
+            <div class="group-input">
+              <input type="password" name="password" class="form-control" placeholder="Password"  value="{{ old('password') }}"/>
+              {!! formAlertError('password') !!}
             </div>
             <div>
               <button type="submit" class="btn btn-default submit">
@@ -30,7 +32,7 @@
         <section class="login_content">
           <form>
             <h1>Create Account</h1>
-            <div>
+            <div class="group-input">
               <input type="email" name="email" class="form-control" placeholder="Email" required="" value="{{ old('email') }}"/>
             </div>
             <div>

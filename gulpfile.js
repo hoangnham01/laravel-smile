@@ -49,8 +49,8 @@ gulp.task('styles::backend-vendor', function(){
         .on('error', handleError)
         .pipe(gulpIf(_option.production, minifyCss()))
         .pipe(gulpIf(_option.sourcemaps, sourcemaps.write('./')))
-        .pipe(gulp.dest(_config.build.css))
-        .pipe(notify("styles::backend-vendor"));
+        .pipe(gulp.dest(_config.build.css));
+        //.pipe(notify("styles::backend-vendor"));
 });
 
 gulp.task('styles::backend-theme', function(){
@@ -60,8 +60,8 @@ gulp.task('styles::backend-theme', function(){
         .pipe(sass().on('error', handleError))
         .pipe(gulpIf(_option.production, minifyCss()))
         .pipe(gulpIf(_option.sourcemaps, sourcemaps.write('./')))
-        .pipe(gulp.dest(_config.build.css))
-        .pipe(notify("styles::backend-vendor"));
+        .pipe(gulp.dest(_config.build.css));
+        //.pipe(notify("styles::backend-vendor"));
 });
 
 /*************** Scripts ***************/
@@ -76,8 +76,8 @@ gulp.task('scripts::backend-vendor', function () {
         .on('error', handleError)
         .pipe(gulpIf(_option.production, uglify()))
         .pipe(gulpIf(_option.sourcemaps, sourcemaps.write('./')))
-        .pipe(gulp.dest(_config.build.js))
-        .pipe(notify('scripts::backend-vendor'));
+        .pipe(gulp.dest(_config.build.js));
+        //.pipe(notify('scripts::backend-vendor'));
 });
 
 gulp.task('scripts::backend-theme', function () {

@@ -81,7 +81,7 @@ if (!function_exists('createSubMenuItemBackend')) {
     }
 }
 
-if(!function_exists('formInput')){
+if (!function_exists('formInput')) {
 
 }
 
@@ -111,7 +111,7 @@ if (!function_exists('createMenuItemBackend')) {
     }
 }
 /*Form*/
-if(!function_exists('formHasError')){
+if (!function_exists('formHasError')) {
     function formHasError($key, $className = ' has-error')
     {
         if (Session::get('errors') instanceof \Illuminate\Support\ViewErrorBag) {
@@ -121,7 +121,7 @@ if(!function_exists('formHasError')){
     }
 }
 
-if(!function_exists('formAlertError')){
+if (!function_exists('formAlertError')) {
     function formAlertError($key)
     {
         $errors = Session::get('errors');
@@ -131,7 +131,15 @@ if(!function_exists('formAlertError')){
         return null;
     }
 }
-
+if (!function_exists('getCurrentRouteName')) {
+    /**
+     *  Get current route name
+     * */
+    function getCurrentRouteName()
+    {
+        return Request::route()->getName();
+    }
+}
 ////////////////////////////////////////////////////////////////////////
 
 

@@ -21,6 +21,8 @@ Route::group(['prefix' => BACKEND_PREFIX, 'namespace' => 'Backend'], function ()
 
     Route::get('login', ['as' => 'backend.login', 'uses' => 'AuthController@getLogin']);
     Route::post('login', ['as' => 'backend.postLogin', 'uses' => 'AuthController@postLogin']);
+    Route::post('forgot-password', ['as' => 'backend.forgot-password', 'uses' => 'AuthController@postLogin']);
+    Route::post('reset-password', ['as' => 'backend.reset-password', 'uses' => 'AuthController@postLogin']);
 
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/logout', ['as' => 'backend.accounts.logout', 'uses' => 'AuthController@getLogout']);

@@ -8,7 +8,8 @@
         "./resources/assets/vendors/bootstrap-daterangepicker/daterangepicker.css",
         "./resources/assets/vendors/normalize-css/normalize.css",
         "./resources/assets/vendors/iCheck/skins/flat/green.css",
-        "./resources/assets/vendors/select2/dist/css/select2.min.css"
+        "./resources/assets/vendors/select2/dist/css/select2.min.css",
+        "./resources/assets/vendors/pnotify/dist/*.css"
       ],
       "theme" : {
         "file": ["./resources/assets/sass/backend/backend.scss"],
@@ -19,6 +20,16 @@
       "vendor": [
         "./resources/assets/vendors/jquery/dist/jquery.min.js",
         "./resources/assets/vendors/bootstrap/dist/js/bootstrap.min.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.animate.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.buttons.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.confirm.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.nonblock.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.mobile.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.desktop.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.history.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.callbacks.js",
+        "./resources/assets/vendors/pnotify/dist/pnotify.reference.js",
         "./resources/assets/vendors/fastclick/lib/fastclick.js",
         "./resources/assets/vendors/nprogress/nprogress.js",
         "./resources/assets/vendors/iCheck/icheck.min.js",

@@ -127,6 +127,12 @@ a.hiddenanchor {
     margin: 20px 0;
     position: relative;
 
+    .group-input{
+      margin: 0 0 20px;
+    }
+    .parsley-errors-list{
+      margin: 5px 0 0 0;
+    }
     input[type="text"],
     input[type="email"],
     input[type="password"] {
@@ -134,7 +140,7 @@ a.hiddenanchor {
       @include css3-prefix(box-shadow, '0 1px 0 #{$white}, 0 -2px 5px #{$black_8} inset');
       border: 1px solid #c8c8c8;
       color: #777;
-      margin: 0 0 20px;
+      margin: 0;
       width: 100%;
       &:focus {
         -webkit-box-shadow: 0 0 2px #AA77B4 inset;

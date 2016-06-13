@@ -21,8 +21,8 @@
                 Username <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" name="username" id="username" required="required" value="{{ old('username') }}" data-regexp="/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/" data-parsley-id="v-username" class="form-control col-md-7 col-xs-12">
-                {!! formAlertError('username', 'v-username') !!}
+                <input type="text" name="username" id="username" required="required" value="{{ old('username') }}" data-regexp="/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/" class="form-control col-md-7 col-xs-12">
+                {!! formAlertError('username') !!}
               </div>
             </div>
             <div class="form-group">

@@ -18,6 +18,7 @@
 <script type="text/javascript" src="{{ asset('assets/js/backend-vendor.js') }}"></script>
 <!-- Custom Theme Scripts -->
 <script type="text/javascript" src="{{ asset('assets/js/backend-app.js') }}"></script>
+@include('vendor.notify')
 @yield('js')
 </body>
 </html>

@@ -11,10 +11,13 @@ class AccountFormRequest extends Request
     public function rules()
     {
         $rules = [
-            
+            'username' => 'required',
+            'password' => 'required'
         ];
-        if ($this->isMethod('PUT')) {
-            
+        if ($this->route()->getName() === 'backend.forgot-password') {
+            $rules = ['email' => 'required|email'];
+        }elseif($this->route()->getName() === 'backend.reset-password') {
+
         }
         return $rules;
     }

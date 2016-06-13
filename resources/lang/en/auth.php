@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
+    'failed_title' => 'Login failed.',
+    'failed_msg' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'status_deactivate' => 'Status deactivate'
 
 ];
