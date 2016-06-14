@@ -232,17 +232,21 @@
   margin-left: 0 !important;
   line-height: 32px;
 }
-
-.main_menu .fa {
-  width: 26px;
-  opacity: .99;
-  display: inline-block;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.main_menu{
+  .fa{
+    width: 26px;
+    opacity: .99;
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .glyphicon{
+    width: 26px;
+  }
 }
 /**** Logo ****/
 .nav_title{
@@ -263,7 +267,6 @@
 
   }
 }
-
 .nav-sm .navbar.nav_title{
   .brand-logo, .brand-name{
     display: none;

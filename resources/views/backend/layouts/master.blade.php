@@ -38,6 +38,7 @@
 </div>
 <!-- Vendor -->
 <script src="{{ asset('assets/js/backend-vendor.js') }}"></script>
+<script src="{{ asset('assets/tinymce/tinymce.min.js') }}"></script>
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('assets/js/backend-app.js') }}"></script>
 @include('vendor.notify')

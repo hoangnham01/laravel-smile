@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Smile\Users\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,14 +17,14 @@ class UsersTableSeeder extends Seeder
                 'username'  => 'admin',
                 'email'     => 'admin@domain.com',
                 'password'  => 'admin',
-                'full_name' => 'Hoang Nham',
+                'full_name' => 'Administrator',
                 'avatar'    => 'images/img.jpg',
                 'group_id'  => 1,
                 'status'    => 1,
             ),
             array(
                 'username'  => 'demo',
-                'email'     => 'admin@domain.com',
+                'email'     => 'demo@domain.com',
                 'password'  => 'demo',
                 'full_name' => 'Demo',
                 'avatar'    => 'images/img.jpg',
@@ -32,8 +33,8 @@ class UsersTableSeeder extends Seeder
             ),
         ];
         foreach ($users as $user) {
-            if (\App\Smile\Users\User::where('username', $user['username'])->count() == 0) {
-                App\Smile\Users\User::create($user);
+            if (User::where('username', $user['username'])->count() == 0) {
+                User::create($user);
             }
         }
     }

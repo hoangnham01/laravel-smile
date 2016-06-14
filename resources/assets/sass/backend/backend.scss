@@ -31,6 +31,12 @@ td,th{
     width: 90px;
   }
 }
+.smile-table{
+  tbody>tr>th,
+  tbody>tr>td{
+    vertical-align: middle;
+  }
+}
 td{
   &.user-media{
     img{
@@ -40,7 +46,25 @@ td{
       border-radius: 50%;
     }
   }
+  &.post-media{
+    img{
+      width: 65px;
+    }
+  }
 }
 .parsley-required{
   text-align: left;
+}
+table tr th,
+table tr td{
+  &.cell-status{
+    text-align: center;
+    width: 90px;
+  }
+  &.cell-action{
+    text-align: center;
+  }
+}
+.tag:after{
+  display: none;
 }

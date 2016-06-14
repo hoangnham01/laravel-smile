@@ -29,6 +29,7 @@ Route::group(['prefix' => BACKEND_PREFIX, 'namespace' => 'Backend'], function ()
         Route::get('/profile', ['as' => 'backend.accounts.profile', 'uses' => 'DashboardController@index']);
 
         Route::resource('users', 'UserController', ['names' => customRouteName('users', 'backend')]);
+        Route::resource('posts', 'PostController', ['names' => customRouteName('posts', 'backend')]);
 
         Route::get('/', ['as' => 'backend.dashboard.index', 'uses' => 'DashboardController@index']);
 

@@ -10,7 +10,7 @@
             <h2>Users
               <small>List users</small>
             </h2>
-            <a href="{{ route('backend.users.create') }}" class="btn btn-primary pull-right">Create</a>
+            <a href="{{ route('backend.posts.create') }}" class="btn btn-primary pull-right">Create</a>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -34,28 +34,33 @@
                   <thead>
                   <tr>
                     <th class="numerical-order">#</th>
-                    <th>Username</th>
-                    <th>Full name</th>
-                    <th>Email</th>
+                    <th>Thumbnail</th>
+                    <th>Title</th>
+                    <th class="text-center">User create</th>
                     <th class="cell-status">Status</th>
                     <th class="cell-action"></th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($users as $key => $item)
+                  @foreach($posts as $key => $item)
                     <tr>
                       <td class="numerical-order">{{ $_from + $key }}</td>
-                      <td class="user-media">
-                        <img src="{{ $item->avatar }}" alt="">
-                        <span class="username">{{ $item->username }}</span>
+                      <td class="post-media">
+                        <img src="{{ $item->thumbnail }}" alt="">
                       </td>
-                      <td>{{ $item->full_name }}</td>
-                      <td>{{ $item->email }}</td>
+                      <td>{{ $item->title }}</td>
+                      <td>{{ $item->username }}</td>
                       <td class="cell-status">
-
+                        @if($item->status == POST_STATUS_ACTIVATED)
+                          <span class="label label-info">{{ trans('common.status.activated') }}</span>
+                        @elseif($item->status == POST_STATUS_DEACTIVATED)
+                          <span class="label label-warning">{{ trans('common.status.deactivated') }}</span>
+                        @elseif($item->status == POST_STATUS_DRAFT)
+                          <span class="label label-default">{{ trans('common.status.draft') }}</span>
+                        @endif
                       </td>
                       <td class="cell-action">
-                        <a class="btn btn-xs" href="{{ route('backend.users.edit', $item->id) }}">Edit</a>
+                        <a class="btn btn-xs" href="{{ route('backend.posts.edit', $item->id) }}">Edit</a>
                       </td>
                     </tr>
                   @endforeach
@@ -65,10 +70,10 @@
             </div>
             <div class="row">
               <div class="col-sm-5">
-                {!! showPaginate($users) !!}
+                {!! showPaginate($posts) !!}
               </div>
               <div class="col-sm-7 text-right">
-                {!! $users->render() !!}
+                {!! $posts->render() !!}
               </div>
             </div>
           </div>

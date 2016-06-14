@@ -2,7 +2,6 @@
 /.phpstorm.meta.php
 /_ide_helper.php
 /_ide_helper_models.php
-/public/assets
 *.iml
 .idea/
 *.ipr

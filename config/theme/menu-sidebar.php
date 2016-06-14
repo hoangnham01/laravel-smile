@@ -7,7 +7,7 @@ return array(
         'route'  => 'backend.dashboard.index',
         'active' => '/',
     ),
-  array(
+    array(
         'title'  => 'Users',
         'lang'   => 'backend.menus.users.title',
         'icon'   => 'fa fa-user',
@@ -15,45 +15,32 @@ return array(
         'sub'    => array(
             array(
                 'title' => 'Lists',
-                'lang' => 'backend.menus.users.title',
-                'route' => 'backend.users.index'
+                'lang'  => 'backend.menus.users.title',
+                'route' => 'backend.users.index',
             ),
             array(
                 'title' => 'Create',
-                'lang' => 'backend.menus.users.create',
+                'lang'  => 'backend.menus.users.create',
                 'route' => 'backend.users.create',
             ),
-        )
-    ),
-    /*  array(
-        'title'  => 'Danh mục',
-        'icon'   => 'fa-tasks',
-        'active' => 'categories*',
-        'sub'    => array(
-            array(
-                'title' => 'Danh sách',
-                'route' => 'backend.categories.index'
-            ),
-            array(
-                'title' => 'Thêm mới',
-                'route' => 'backend.categories.create',
-            ),
-        )
+        ),
     ),
     array(
-        'title'  => 'Phân quyền',
-        'icon'   => 'fa-cogs',
-        'active' => 'group*',
+        'title'  => 'Post',
+        'lang'   => 'backend.menus.posts.title',
+        'icon'   => 'glyphicon glyphicon-list-alt',
+        'active' => 'posts*',
         'sub'    => array(
             array(
-                'title' => 'Danh sách',
-                'route' => 'backend.groups.index'
+                'title' => 'Lists',
+                'lang'  => 'backend.menus.posts.title',
+                'route' => 'backend.posts.index',
             ),
             array(
-                'title' => 'Thêm mới',
-                'route' => 'backend.groups.create',
-            )
-        )
-    ),*/
-
+                'title' => 'Create',
+                'lang'  => 'backend.menus.posts.create',
+                'route' => 'backend.posts.create',
+            ),
+        ),
+    ),
 );

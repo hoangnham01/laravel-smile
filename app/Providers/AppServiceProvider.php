@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
         $this->app->singleton('App\Smile\Users\UserRepositoryInterface', 'App\Smile\Users\DbUserRepository');
+        $this->app->singleton('App\Smile\Posts\PostRepositoryInterface', 'App\Smile\Posts\DbPostRepository');
     }
 }

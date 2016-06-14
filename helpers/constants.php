@@ -85,3 +85,11 @@ define('CORE_CACHE_ROLE', 'CORE_CACHE_ROLE');
 #media
 define('MEDIA_TYPE_AUDIO', 'audio');
 define('MEDIA_TYPE_VIDEO', 'video');
+
+#Tags
+define('TAG_TYPE_POST', 'post');
+
+#Post
+define('POST_STATUS_ACTIVATED', 1);
+define('POST_STATUS_DEACTIVATED', 2);
+define('POST_STATUS_DRAFT', 3);

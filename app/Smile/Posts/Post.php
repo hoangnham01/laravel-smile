@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
-    protected $table = '';
+    protected $table = 'posts';
 
     public $timestamps = true;
     /**
@@ -16,5 +16,5 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'title', 'slug', 'thumbnail', 'content', 'taxonomy_id', 'status', 'options'];
 }

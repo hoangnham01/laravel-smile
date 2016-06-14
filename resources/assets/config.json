@@ -21,6 +21,7 @@
         "./resources/assets/vendors/jquery/dist/jquery.min.js",
         "./resources/assets/vendors/bootstrap/dist/js/bootstrap.min.js",
         "./resources/assets/vendors/pnotify/dist/pnotify.js",
+
         "./resources/assets/vendors/pnotify/dist/pnotify.animate.js",
         "./resources/assets/vendors/pnotify/dist/pnotify.buttons.js",
         "./resources/assets/vendors/pnotify/dist/pnotify.confirm.js",
@@ -30,6 +31,7 @@
         "./resources/assets/vendors/pnotify/dist/pnotify.history.js",
         "./resources/assets/vendors/pnotify/dist/pnotify.callbacks.js",
         "./resources/assets/vendors/pnotify/dist/pnotify.reference.js",
+
         "./resources/assets/vendors/fastclick/lib/fastclick.js",
         "./resources/assets/vendors/nprogress/nprogress.js",
         "./resources/assets/vendors/iCheck/icheck.min.js",
@@ -38,7 +40,8 @@
         "./resources/assets/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js",
         "./resources/assets/vendors/parsleyjs/dist/parsley.min.js",
         "./resources/assets/vendors/select2/dist/js/select2.min.js",
-        "./resources/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"
+        "./resources/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
+        "./resources/assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js"
       ],
       "theme": [
         "./resources/assets/js/backend/**/*.js"

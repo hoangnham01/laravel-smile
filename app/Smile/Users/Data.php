@@ -18,7 +18,7 @@ class Data
     /* Backend */
 
     public function getDataBackend(Request $request){
-        $appends = request()->only(['page', 'per_page', 'search', 'sort', 'order']);
+        $appends = $request->only(['page', 'per_page', 'search', 'sort', 'order']);
         $appends['sort'] = in_array($appends['sort'], ['id', 'username', 'full_name']) ? $appends['sort'] : 'id';
         $appends['order'] = strtolower($appends['order']) == 'desc' ? 'desc' : 'asc';
         $filters = [['type' => ORDER_BY, 'column' => $appends['sort'], 'value' => $appends['order']]];
