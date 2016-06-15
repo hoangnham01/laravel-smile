@@ -43,4 +43,5 @@ $(document).ready(function(){
     $('.input-tags').tagsInput({
         width: 'auto'
     });
+    $('.fileinput').fileinput();
 });

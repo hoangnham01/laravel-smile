@@ -9,7 +9,8 @@
         "./resources/assets/vendors/normalize-css/normalize.css",
         "./resources/assets/vendors/iCheck/skins/flat/green.css",
         "./resources/assets/vendors/select2/dist/css/select2.min.css",
-        "./resources/assets/vendors/pnotify/dist/*.css"
+        "./resources/assets/vendors/pnotify/dist/*.css",
+        "./resources/assets/vendors/jasny-bootstrap/dist/css/jasny-bootstrap.css"
       ],
       "theme" : {
         "file": ["./resources/assets/sass/backend/backend.scss"],
@@ -41,7 +42,8 @@
         "./resources/assets/vendors/parsleyjs/dist/parsley.min.js",
         "./resources/assets/vendors/select2/dist/js/select2.min.js",
         "./resources/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
-        "./resources/assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js"
+        "./resources/assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js",
+        "./resources/assets/vendors/jasny-bootstrap/dist/js/jasny-bootstrap.js"
       ],
       "theme": [
         "./resources/assets/js/backend/**/*.js"

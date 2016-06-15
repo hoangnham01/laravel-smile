@@ -34,6 +34,7 @@ class UsersTableSeeder extends Seeder
         ];
         foreach ($users as $user) {
             if (User::where('username', $user['username'])->count() == 0) {
+                $user['password'] = bcrypt($user['password']);
                 User::create($user);
             }
         }

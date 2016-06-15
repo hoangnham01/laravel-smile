@@ -18,7 +18,17 @@ class Creator
 
     public function dataCreate()
     {
-        return [];
+        return [
+            'categories' => [
+                ['id' => 1, 'title' => 'Category 1', 'mask' => ''],
+                ['id' => 2, 'title' => 'Category 1.1', 'mask' => '|--'],
+                ['id' => 3, 'title' => 'Category 1.2', 'mask' => '|--'],
+                ['id' => 4, 'title' => 'Category 2', 'mask' => ''],
+                ['id' => 5, 'title' => 'Category 2.1', 'mask' => '|--'],
+                ['id' => 6, 'title' => 'Category 2.1.2', 'mask' => '|----'],
+            ],
+            'layouts' => config('theme.setting.layouts', [])
+        ];
     }
 
     /**

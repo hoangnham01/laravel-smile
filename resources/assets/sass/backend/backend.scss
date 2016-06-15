@@ -68,3 +68,21 @@ table tr td{
 .tag:after{
   display: none;
 }
+.fileinput{
+  &.block{
+    display: block;
+    margin-top: 7px;
+  }
+  .fileinput-preview{
+    height: auto;
+    display: block;
+  }
+}
+.fileinput-preview{
+  &:empty{
+    display: none;
+  }
+  img{
+    max-width: 100%;
+  }
+}

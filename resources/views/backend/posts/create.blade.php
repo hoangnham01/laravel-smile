@@ -52,9 +52,41 @@
               </div>
               <div class="col-md-3">
                 <div class="control-group">
-                  <label class="control-labelcol-xs-12">Tags</label>
-                  <div class="col-xs-12">
-                    <input type="text" name="tags" class="input-tags form-control" value="social, adverts, sales" />
+                  <label>Category</label>
+                  <select name="category_id" class="form-control">
+                    <option>{{ trans('common.choose_option') }}</option>
+                    @foreach($categories as $item)
+                      <option value="{{ $item['id'] }}"
+                              @if(old('category_id') == $item['id']) selected="selected" @endif>{{ $item['mask'] . $item['title'] }}</option>
+                    @endforeach
+                  </select>
+                  {!! formAlertError('category_id') !!}
+                </div>
+                <div class="control-group">
+                  <label>Layout</label>
+                  <select name="options_layout" class="form-control">
+                    @foreach($layouts as $key => $item)
+                      <option value="{{ $key }}"
+                              @if(old('options_layout') == $key) selected="selected" @endif>{{ $item }}</option>
+                    @endforeach
+                  </select>
+                  {!! formAlertError('category_id') !!}
+                </div>
+                <div class="control-group">
+                  <label>Tags</label>
+                  <input type="text" name="tags" class="input-tags form-control" value="{{ old('tags') }}"/>
+                </div>
+                <div class="form-group">
+                  <lable>Thumbnail</lable>
+                  <div class="fileinput fileinput-new block" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                    <div>
+                      <span class="btn btn-default btn-file">
+                        <span class="fileinput-new" data-trigger="fileinput">Select image</span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" name="..."></span>
+                      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
                   </div>
                 </div>
               </div>
