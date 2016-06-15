@@ -14,7 +14,7 @@
         </div>
         <div class="x_content">
           <br/>
-          <form id="demo-form2" data-parsley-validate method="post" action="{{ route('backend.users.update', $user->id) }}" class="form-horizontal form-label-left">
+          <form data-parsley-validate method="post" action="{{ route('backend.users.update', $user->id) }}" class="form-horizontal form-label-left">
             {!! csrf_field() !!}
             <input type="hidden" name="_method" value="put">
             <div class="form-group">

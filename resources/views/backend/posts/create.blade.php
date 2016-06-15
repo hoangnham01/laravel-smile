@@ -14,7 +14,7 @@
         </div>
         <div class="x_content">
           <br/>
-          <form id="demo-form2" data-parsley-validate method="post" action="{{ route('backend.posts.store') }}"
+          <form data-parsley-validate method="post" action="{{ route('backend.posts.store') }}"
                 class="form-horizontal form-label-left">
             {!! csrf_field() !!}
             <div class="row">
@@ -84,7 +84,7 @@
                       <span class="btn btn-default btn-file">
                         <span class="fileinput-new" data-trigger="fileinput">Select image</span>
                         <span class="fileinput-exists">Change</span>
-                        <input type="file" name="..."></span>
+                        <input type="file" name="thumbnail"></span>
                       <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                     </div>
                   </div>

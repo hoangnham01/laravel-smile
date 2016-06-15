@@ -7,47 +7,85 @@
       <div class="x_panel">
         <div class="x_title">
           <h2>
-            Form Edit user
+            Form Edit post
           </h2>
 
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
           <br/>
-          <form id="demo-form2" data-parsley-validate method="post" action="{{ route('backend.users.update', $user->id) }}" class="form-horizontal form-label-left">
+          <form data-parsley-validate method="post" action="{{ route('backend.posts.update', $post->id) }}" class="form-horizontal form-label-left">
             {!! csrf_field() !!}
-            <input type="hidden" name="_method" value="put">
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
-                Username <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" name="username" id="username" required="required" value="{{ old('username', $user->username) }}" disabled class="form-control col-md-7 col-xs-12">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label>
+                    Title <span class="required">*</span>
+                  </label>
+                  <input type="text" name="title" required="required" value="{{ old('title', $post->title) }}" class="form-control" data-parsley-maxlength="255">
+                  {!! formAlertError('title') !!}
+                </div>
+                <div class="form-group">
+                  <label>
+                    Slug <span class="required">*</span>
+                  </label>
+                  <input type="text" name="slug" required="required" value="{{ old('slug', $post->slug) }}" class="form-control" data-parsley-maxlength="255">
+                  {!! formAlertError('slug') !!}
+                </div>
+                <div class="form-group">
+                  <label>
+                    Content <span class="required">*</span>
+                  </label>
+                  <textarea name="content" class="tinymce-editor form-control">{{ old('content', $post->content) }}</textarea>
+                  {!! formAlertError('content') !!}
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-xs-12">
+                    <button type="reset" class="btn btn-primary">Cancel</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
-                Email <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="email" id="email" name="email" required="required" value="{{ old('email', $user->email) }}" class="form-control col-md-7 col-xs-12">
-                {!! formAlertError('email') !!}
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="full_name">
-                Full name <span class="required">*</span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="full_name" name="full_name" required="required" value="{{ old('full_name', $user->full_name) }}" class="form-control col-md-7 col-xs-12">
-                {!! formAlertError('full_name') !!}
-              </div>
-            </div>
-            <div class="ln_solid"></div>
-            <div class="form-group">
-              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                <button type="reset" class="btn btn-primary">Cancel</button>
-                <button type="submit" class="btn btn-success">Update</button>
+              <div class="col-md-3">
+                <div class="control-group">
+                  <label>Category</label>
+                  <select name="category_id" class="form-control">
+                    <option>{{ trans('common.choose_option') }}</option>
+                    @foreach($categories as $item)
+                      <option value="{{ $item['id'] }}"
+                              @if(old('category_id', $post->category_id) == $item['id']) selected="selected" @endif>{{ $item['mask'] . $item['title'] }}</option>
+                    @endforeach
+                  </select>
+                  {!! formAlertError('category_id') !!}
+                </div>
+                <div class="control-group">
+                  <label>Layout</label>
+                  <select name="options_layout" class="form-control">
+                    @foreach($layouts as $key => $item)
+                      <option value="{{ $key }}"
+                              @if(old('options_layout', $post->options->layout) == $key) selected="selected" @endif>{{ $item }}</option>
+                    @endforeach
+                  </select>
+                  {!! formAlertError('category_id') !!}
+                </div>
+                <div class="control-group">
+                  <label>Tags</label>
+                  <input type="text" name="tags" class="input-tags form-control" value="{{ old('tags', $post->tags) }}"/>
+                </div>
+                <div class="form-group">
+                  <lable>Thumbnail</lable>
+                  <div class="fileinput fileinput-new block" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                    <div>
+                      <span class="btn btn-default btn-file">
+                        <span class="fileinput-new" data-trigger="fileinput">Select image</span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" name="thumbnail"></span>
+                      <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </form>
