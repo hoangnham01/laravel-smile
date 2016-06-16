@@ -42,9 +42,6 @@ class PostController extends BackendController implements CreatorListener, Updat
 
     public function store(PostFormRequest $request)
     {
-        echo '<pre>';
-        print_r($request->all());
-        die;
         return $this->creator->postCreate($request, $this);
     }
 

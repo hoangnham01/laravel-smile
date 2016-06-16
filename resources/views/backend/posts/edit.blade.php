@@ -14,7 +14,7 @@
         </div>
         <div class="x_content">
           <br/>
-          <form data-parsley-validate method="post" action="{{ route('backend.posts.update', $post->id) }}" class="form-horizontal form-label-left">
+          <form data-parsley-validate method="post" action="{{ route('backend.posts.update', $post->id) }}" class="form-horizontal form-label-left"  enctype="multipart/form-data">
             {!! csrf_field() !!}
             <div class="row">
               <div class="col-md-9">

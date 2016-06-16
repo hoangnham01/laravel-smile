@@ -20,7 +20,7 @@ class CreateTablePosts extends Migration
             $table->string('slug', 255);
             $table->string('thumbnail', 255)->nulltable();
             $table->text('content');
-            $table->integer('taxonomy_id')->default(0);
+            $table->integer('category_id')->default(0);
             $table->smallInteger('status')->default(POST_STATUS_ACTIVATED);
             $table->text('options')->nulltable();
             $table->timestamps();

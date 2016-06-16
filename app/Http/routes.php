@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('layout', function(){
     return view(request('file', 'backend.dashboard.index'));
 });

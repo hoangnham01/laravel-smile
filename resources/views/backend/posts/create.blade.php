@@ -14,8 +14,7 @@
         </div>
         <div class="x_content">
           <br/>
-          <form data-parsley-validate method="post" action="{{ route('backend.posts.store') }}"
-                class="form-horizontal form-label-left">
+          <form data-parsley-validate method="post" action="{{ route('backend.posts.store') }}" class="form-horizontal form-label-left"  enctype="multipart/form-data">
             {!! csrf_field() !!}
             <div class="row">
               <div class="col-md-9">
@@ -45,6 +44,7 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-xs-12">
+                    <input type="hidden" name="status" value="{{ POST_STATUS_ACTIVATED }}">
                     <button type="reset" class="btn btn-primary">Cancel</button>
                     <button type="submit" class="btn btn-success">Submit</button>
                   </div>

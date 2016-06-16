@@ -68,10 +68,6 @@ define('PATH_UPLOAD_DEFAULT', 'uploads/defaults/');
 define('PATH_UPLOAD_AVATAR', 'uploads/avatars/');
 
 define('PATH_UPLOAD_POSTS', 'uploads/posts/');
-define('PATH_UPLOAD_MEDIAS', 'uploads/medias/');
-define('PATH_UPLOAD_SLIDERS', 'uploads/sliders/');
-define('PATH_UPLOAD_IMAGES', 'uploads/images/');
-define('PATH_UPLOAD_THUMBNAILS', 'uploads/thumbnails/');
 
 
 define('GENDER_MALE', 1);

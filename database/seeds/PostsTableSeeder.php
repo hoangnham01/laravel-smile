@@ -19,7 +19,7 @@ class PostsTableSeeder extends Seeder
                 'title' => 'Vitae Oulputate Augue Lacinia',
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
-                'taxonomy_id' => 1,
+                'category_id' => 1,
                 'status' => POST_STATUS_ACTIVATED,
                 'options' => json_encode([])
             ],
@@ -28,7 +28,7 @@ class PostsTableSeeder extends Seeder
                 'title' => 'Donec Suscipit Dim Euismods',
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
-                'taxonomy_id' => 1,
+                'category_id' => 1,
                 'status' => POST_STATUS_DRAFT,
                 'options' => json_encode([])
             ],
@@ -37,7 +37,7 @@ class PostsTableSeeder extends Seeder
                 'title' => 'Vitae Oulputate Augue Lacinia',
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
-                'taxonomy_id' => 1,
+                'category_id' => 1,
                 'status' => POST_STATUS_DEACTIVATED,
                 'options' => json_encode([])
             ],
@@ -46,7 +46,7 @@ class PostsTableSeeder extends Seeder
                 'title' => 'Donec Suscipit Dim Euismods',
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
-                'taxonomy_id' => 1,
+                'category_id' => 1,
                 'status' => POST_STATUS_ACTIVATED,
                 'options' => json_encode([])
             ]

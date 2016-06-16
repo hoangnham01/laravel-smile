@@ -3,22 +3,35 @@
 namespace App\Smile\Posts;
 
 use App\Exceptions\TransactionException;
-
+use App\Smile\Tags\TagRepositoryInterface;
 
 class Updater
 {
 
-    protected $repository;
+    protected $repository, $tag;
 
-    public function __construct(PostRepositoryInterface $repository)
+    public function __construct(PostRepositoryInterface $repository, TagRepositoryInterface $tag)
     {
         $this->repository = $repository;
+        $this->tag = $tag;
     }
 
     public function dataEdit(Post $post)
     {
+        $post->options =json_decode($post->options);
+        $tags = $this->tag->getTagsItem($post->id, TAG_TYPE_POST)->lists('title')->toArray();
+        $post->tags = implode(', ', $tags);
         return [
             'post' => $post,
+            'categories' => [
+                ['id' => 1, 'title' => 'Category 1', 'mask' => ''],
+                ['id' => 2, 'title' => 'Category 1.1', 'mask' => '|--'],
+                ['id' => 3, 'title' => 'Category 1.2', 'mask' => '|--'],
+                ['id' => 4, 'title' => 'Category 2', 'mask' => ''],
+                ['id' => 5, 'title' => 'Category 2.1', 'mask' => '|--'],
+                ['id' => 6, 'title' => 'Category 2.1.2', 'mask' => '|----'],
+            ],
+            'layouts' => config('theme.setting.layouts', [])
         ];
     }
 

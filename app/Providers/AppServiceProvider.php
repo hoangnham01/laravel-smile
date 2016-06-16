@@ -25,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('App\Smile\Users\UserRepositoryInterface', 'App\Smile\Users\DbUserRepository');
         $this->app->singleton('App\Smile\Posts\PostRepositoryInterface', 'App\Smile\Posts\DbPostRepository');
+        $this->app->singleton('App\Smile\Tags\TagRepositoryInterface', 'App\Smile\Tags\DbTagRepository');
     }
 }

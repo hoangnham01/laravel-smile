@@ -81,9 +81,6 @@ if (!function_exists('createSubMenuItemBackend')) {
     }
 }
 
-if (!function_exists('formInput')) {
-
-}
 
 if (!function_exists('createMenuItemBackend')) {
     function createMenuItemBackend($item)
@@ -140,6 +137,48 @@ if (!function_exists('getCurrentRouteName')) {
         return Request::route()->getName();
     }
 }
+if (!function_exists('uploadDirectory')) {
+    function uploadDirectory($pathPrefix)
+    {
+        $path = $pathPrefix;
+        $uploadPath = public_path('/');
+        if (!File::isDirectory($uploadPath)) {
+            File::makeDirectory($uploadPath . $path);
+        }
+        $path .= date('Y') . '/';
+        if (!File::isDirectory($uploadPath . $path)) {
+            File::makeDirectory($uploadPath . $path);
+        }
+        $path .= date('m') . '/';
+        if (!File::isDirectory($uploadPath . $path)) {
+            File::makeDirectory($uploadPath . $path);
+        }
+        return $path;
+    }
+}
+if (!function_exists('uploadFile')) {
+    function uploadFile($name, $pathPrefix, $fileName = null)
+    {
+        $path = uploadDirectory($pathPrefix);
+        if (request()->hasFile($name)) {
+            $file = request()->file($name);
+            $fileName = is_null($fileName) ? str_random() . '_' . date('d-m-y') . '.' . $file->getClientOriginalExtension() : $fileName;
+            $file->move(public_path($path), $fileName);
+        }
+
+        return $path . $fileName;
+    }
+}
+if (!function_exists('removeFile')) {
+    function removeFile($name)
+    {
+        if (File::exists($name)) {
+            File::delete($name);
+        }
+    }
+}
+
+
 ////////////////////////////////////////////////////////////////////////
 
 
@@ -373,17 +412,6 @@ function getRandomFileName($name, $ext)
     return date('YmdHi') . '-' . sha1(uniqid() . $name) . '.' . $ext;
 }
 
-function uploadFile($request, $fieldName, $path, $filename = null)
-{
-    if ($request->hasFile($fieldName)) {
-        $file = $request->file($fieldName);
-        $filename = empty($filename) ? getRandomFileName($file->getClientOriginalName(), $file->getClientOriginalExtension()) : $filename;
-        $path = getPathUploadFile($path);
-        $file->move(public_path($path), $filename);
-        return $path . '/' . $filename;
-    }
-    return null;
-}
 
 function uploadArrayFile($request, $fieldName, array $fileLists, $path, $filename = array())
 {
