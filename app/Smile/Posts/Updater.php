@@ -45,8 +45,17 @@ class Updater
     {
         $this->repository->beginTransaction();
         try {
-            $data = $request->only([]);
+            $data = $request->only(['title', 'slug', 'content', 'category_id', 'status']);
+            $data['slug'] = str_slug($data['slug']);
+            $data['options'] = json_encode(['layout' => $request->input('options_layout')]);
+            $data['thumbnail'] = uploadFile('thumbnail', PATH_UPLOAD_POSTS);
+            if(empty($data['thumbnail'])){
+                unset($data['thumbnail']);
+            }else{
+                removeFile($post->thumbnail);
+            }
             $this->repository->update($data, ['column' => 'id', 'value' => $post->id]);
+            $this->tag->updateTags(explode(',', $request->input('tags')), $post->id, TAG_TYPE_POST);
             event('post.update', $post);
             $this->repository->commit();
             return $listener->updaterSuccessful(['code' => UPDATED_SUCCESS, 'msg' => trans('messages.update_success')]);

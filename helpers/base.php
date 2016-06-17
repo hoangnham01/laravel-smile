@@ -335,152 +335,12 @@ function izWriteLog(Exception $e)
     ]);
 }
 
-/**
- * Replace variable template email
- * @param $keys
- * @param $content
- * @return mixed
- */
-function replaceTemplateMail($keys, $content)
-{
-    if (empty($keys)) {
-        return $content;
-    }
-    foreach ($keys as $key) {
-        $content = str_replace('{' . $key . '}', sprintf('{{$%s}}', $key), $content);
-    }
-    return $content;
-}
-
-/**
- * Replace variable subject mail
- * @param       $key
- * @param array $value
- * @return mixed
- */
-function replaceSubjectMail($key, array $value)
-{
-    $template = config('email-template.' . $key);
-    if (empty($template) || empty($template['keys'])) {
-        return $template['subject'];
-    }
-    $keys = array_keys($template['keys']);
-    $subject = $template['subject'];
-    foreach ($keys as $key) {
-        $subject = str_replace('{' . $key . '}', !empty($value[$key]) ? $value[$key] : '', $subject);
-    }
-    return $subject;
-}
-
-/**
- * Get code tracking email
- * @param array $params
- * @param       $routeName
- * @return string
- */
-function getTemplateTrackingEmail(array $params, $routeName)
-{
-    if (empty($params) || empty($routeName)) {
-        return '';
-    }
-    return route($routeName, $params);
-}
-
-
-/**
- * HELPER FOR UPLOAD FILE
- */
-
-function getPathUploadFile($path)
-{
-    if (!File::isDirectory(public_path($path))) {
-        File::makeDirectory(public_path($path), 0777, true);
-    }
-    $path .= date('Y');
-    if (!File::isDirectory(public_path($path))) {
-        File::makeDirectory(public_path($path), 0777, true);
-    }
-    $path .= '/' . date('m');
-    if (!File::isDirectory(public_path($path))) {
-        File::makeDirectory(public_path($path), 0777, true);
-    }
-    return $path;
-}
-
-function getRandomFileName($name, $ext)
-{
-    return date('YmdHi') . '-' . sha1(uniqid() . $name) . '.' . $ext;
-}
-
-
-function uploadArrayFile($request, $fieldName, array $fileLists, $path, $filename = array())
-{
-    $files = $request->file($fieldName);
-    $pathRoot = $path;
-    if (is_array($files)) {
-        $fileLists = empty($fileLists) ? array_keys($files) : $fileLists;
-        foreach ($fileLists as $val) {
-            if (empty($files[$val])) {
-                $data[$val] = null;
-            } else {
-                if (is_array($files[$val])) {
-                    $tmp = array();
-                    foreach ($files[$val] as $key => $item) {
-                        $filename = getRandomFileName($item->getClientOriginalName(), $item->getClientOriginalExtension());
-                        $path = getPathUploadFile($pathRoot);
-                        $item->move(public_path($path), $filename);
-                        $tmp[$key] = $path . '/' . $filename;
-                    }
-                    $data[$val] = $tmp;
-                } else {
-                    $filename = empty($filename[$val]) ? getRandomFileName($files[$val]->getClientOriginalName(), $files[$val]->getClientOriginalExtension()) : $filename[$val];
-                    $path = getPathUploadFile($pathRoot);
-                    $files[$val]->move(public_path($path), $filename);
-                    $data[$val] = $path . '/' . $filename;
-                }
-            }
-        }
-    } else {
-        foreach ($fileLists as $val) {
-            $data[$val] = null;
-        }
-    }
-    return $data;
-}
-
-function removeFile($path)
-{
-    if (File::exists(public_path($path))) {
-        File::delete(public_path($path));
-    }
-}
-
 function array_remove_keys(array &$array, array $keys)
 {
     foreach ($keys as $key) {
         unset($array[$key]);
     }
 }
-
-/*-----------------------------------------------------------------------------------------------------------
- *  JSON FUNCTION
- *-----------------------------------------------------------------------------------------------------------
- */
-
-function sanitizeSetValue($value)
-{
-    return !empty($value) && is_array($value) ? json_encode($value) : $value;
-}
-
-function sanitizeGetValue($value)
-{
-    return !empty($value) && json_decode($value, true) ? json_decode($value, true) : $value;
-}
-
-/*-----------------------------------------------------------------------------------------------------------
- *  FILE FUNCTION
- *-----------------------------------------------------------------------------------------------------------
- */
 
 function cleanNumberPhone($phone)
 {
@@ -489,15 +349,6 @@ function cleanNumberPhone($phone)
     return $phone;
 }
 
-function getDataFormSearch()
-{
-    $request = app('Illuminate\Http\Request');
-    $data = $request->only(array('page', 'sort', 'orderBy', 'per-page', 'search', 'filter', 'filter1', 'filter2', 'filter3', 'filter4', 'advanced'));
-    $data['per-page'] = (int)$data['per-page'] < NUM_PER_PAGE ? NUM_PER_PAGE : (int)$data['per-page'];
-    $data['per-page'] = $data['per-page'] > 100 ? 100 : $data['per-page'];
-    $data['orderBy'] = strtolower((string)$data['orderBy']) === 'asc' ? 'asc' : 'desc';
-    return $data;
-}
 
 /***********************************************************************************************************************
  * ARRAY FUNCTION
@@ -542,22 +393,6 @@ function getRouteName()
     return Request::route()->getName();
 }
 
-// Add class menu selected sidebar
-function activeItemSidebar($slug = null)
-{
-    if (!is_null($slug) && is_array($slug)) {
-        foreach ($slug as $value) {
-            if (Request::is(BACKEND_PREFIX . '/' . $value)) {
-                return ' active';
-            }
-        }
-    } else {
-        if (Request::is(BACKEND_PREFIX . '/' . $slug) || (is_null($slug) && Request::is(BACKEND_PREFIX . $slug))) {
-            return ' active';
-        }
-    }
-    return '';
-}
 
 if (!function_exists('checkAccess')) {
     /**

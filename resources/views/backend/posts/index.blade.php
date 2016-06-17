@@ -51,12 +51,10 @@
                       <td>{{ $item->title }}</td>
                       <td>{{ $item->username }}</td>
                       <td class="cell-status">
-                        @if($item->status == POST_STATUS_ACTIVATED)
-                          <span class="label label-info">{{ trans('common.status.activated') }}</span>
-                        @elseif($item->status == POST_STATUS_DEACTIVATED)
-                          <span class="label label-warning">{{ trans('common.status.deactivated') }}</span>
-                        @elseif($item->status == POST_STATUS_DRAFT)
-                          <span class="label label-default">{{ trans('common.status.draft') }}</span>
+                        @if($item->status == POST_STATUS_PUBLIC)
+                          <span class="label label-info">{{ trans('common.status.public') }}</span>
+                        @elseif($item->status == POST_STATUS_PRIVATE)
+                          <span class="label label-warning">{{ trans('common.status.private') }}</span>
                         @endif
                       </td>
                       <td class="cell-action">

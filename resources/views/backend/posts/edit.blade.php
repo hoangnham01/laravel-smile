@@ -15,6 +15,7 @@
         <div class="x_content">
           <br/>
           <form data-parsley-validate method="post" action="{{ route('backend.posts.update', $post->id) }}" class="form-horizontal form-label-left"  enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="put">
             {!! csrf_field() !!}
             <div class="row">
               <div class="col-md-9">
@@ -64,10 +65,10 @@
                   <select name="options_layout" class="form-control">
                     @foreach($layouts as $key => $item)
                       <option value="{{ $key }}"
-                              @if(old('options_layout', $post->options->layout) == $key) selected="selected" @endif>{{ $item }}</option>
+                              @if(old('options_layout', isset($post->options->layout) ? $post->options->layout : null) == $key) selected="selected" @endif>{{ $item }}</option>
                     @endforeach
                   </select>
-                  {!! formAlertError('category_id') !!}
+                  {!! formAlertError('options_layout') !!}
                 </div>
                 <div class="control-group">
                   <label>Tags</label>
@@ -75,6 +76,10 @@
                 </div>
                 <div class="form-group">
                   <lable>Thumbnail</lable>
+                  <div class="thumbnail">
+                    <img src="{{ url($post->thumbnail) }}" class="img-responsive" alt="">
+                    <span class="helper-block">Image old</span>
+                  </div>
                   <div class="fileinput fileinput-new block" data-provides="fileinput">
                     <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
                     <div>
@@ -84,6 +89,19 @@
                         <input type="file" name="thumbnail"></span>
                       <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                     </div>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label>Visibility</label>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" class="minimal" name="status" {{ old('status', $post->status) != POST_STATUS_PRIVATE ? "checked" : "" }} value="{{ POST_STATUS_PUBLIC }}"> Public
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" class="minimal" name="status" {{ old('status', $post->status) == POST_STATUS_PRIVATE ? "checked" : "" }} value="{{ POST_STATUS_PRIVATE }}">  Private
+                    </label>
                   </div>
                 </div>
               </div>

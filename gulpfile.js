@@ -89,13 +89,11 @@ gulp.task('scripts::backend-theme', function () {
         .pipe(gulpIf(_option.sourcemaps, sourcemaps.write('./')))
         .pipe(gulp.dest(_config.build.js));
 });
-gulp.task('assets::fonts', function() {
-    return gulp.src(_config.fonts)
-        .pipe(gulp.dest(_config.build.fonts));
-});
-gulp.task('assets::images', function() {
-    return gulp.src(_config.images)
-        .pipe(gulp.dest(_config.build.images));
+gulp.task('assets::copy', function() {
+    for(var key in _config.copy){
+        gulp.src(_config.copy[key])
+            .pipe(gulp.dest(key));
+    }
 });
 
 gulp.task('watch', function () {
@@ -111,8 +109,12 @@ gulp.task('watch', function () {
     gulp.watch(_config.backend.scripts.vendor, ['scripts::backend-vendor']);
     gulp.watch(_config.backend.scripts.theme, ['scripts::backend-theme']);
 
-    gulp.watch(_config.fonts, ['assets::fonts']);
-    gulp.watch(_config.images, ['assets::images']);
+    var copy = [];
+    for(var key in _config.copy){
+        copy = copy.concat(_config.copy[key]);
+    }
+    console.log(copy);
+    gulp.watch(copy, ['assets::copy']);
 
     // list of source file to watch for live reload
     var watchSource = ['./resources/assets/config.json'].concat(
@@ -120,8 +122,7 @@ gulp.task('watch', function () {
         _config.backend.styles.theme.watch,
         _config.backend.scripts.vendor,
         _config.backend.scripts.theme,
-        _config.fonts,
-        _config.images
+        copy
     );
 
     gulp
@@ -138,6 +139,7 @@ gulp.task('watch', function () {
 gulp.task('default', gulpSync.sync([
     'styles::backend-vendor', 'styles::backend-theme',
     'scripts::backend-vendor', 'scripts::backend-theme',
+    'assets::copy',
     'watch'
 ]), function () {
 

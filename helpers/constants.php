@@ -86,6 +86,5 @@ define('MEDIA_TYPE_VIDEO', 'video');
 define('TAG_TYPE_POST', 'post');
 
 #Post
-define('POST_STATUS_ACTIVATED', 1);
-define('POST_STATUS_DEACTIVATED', 2);
-define('POST_STATUS_DRAFT', 3);
+define('POST_STATUS_PUBLIC', 1);
+define('POST_STATUS_PRIVATE', 2);

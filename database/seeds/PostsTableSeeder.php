@@ -20,7 +20,7 @@ class PostsTableSeeder extends Seeder
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
                 'category_id' => 1,
-                'status' => POST_STATUS_ACTIVATED,
+                'status' => POST_STATUS_PRIVATE,
                 'options' => json_encode([])
             ],
             [
@@ -29,7 +29,7 @@ class PostsTableSeeder extends Seeder
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
                 'category_id' => 1,
-                'status' => POST_STATUS_DRAFT,
+                'status' => POST_STATUS_PUBLIC,
                 'options' => json_encode([])
             ],
             [
@@ -38,7 +38,7 @@ class PostsTableSeeder extends Seeder
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
                 'category_id' => 1,
-                'status' => POST_STATUS_DEACTIVATED,
+                'status' => POST_STATUS_PRIVATE,
                 'options' => json_encode([])
             ],
             [
@@ -47,7 +47,7 @@ class PostsTableSeeder extends Seeder
                 'thumbnail' => 'images/picture2.jpg',
                 'content' =>  $content,
                 'category_id' => 1,
-                'status' => POST_STATUS_ACTIVATED,
+                'status' => POST_STATUS_PUBLIC,
                 'options' => json_encode([])
             ]
         );

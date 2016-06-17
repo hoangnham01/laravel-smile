@@ -7,7 +7,7 @@
         "./resources/assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css",
         "./resources/assets/vendors/bootstrap-daterangepicker/daterangepicker.css",
         "./resources/assets/vendors/normalize-css/normalize.css",
-        "./resources/assets/vendors/iCheck/skins/flat/green.css",
+        "./resources/assets/vendors/iCheck/skins/minimal/grey.css",
         "./resources/assets/vendors/select2/dist/css/select2.min.css",
         "./resources/assets/vendors/pnotify/dist/*.css",
         "./resources/assets/vendors/jasny-bootstrap/dist/css/jasny-bootstrap.css"
@@ -58,17 +58,21 @@
 
     }
   },
-  "fonts": [
-    "./resources/assets/vendors/bootstrap/fonts/*",
-    "./resources/assets/vendors/font-awesome/fonts/*"
-  ],
-  "images": [
-    "./resources/assets/images/*"
-  ],
+  "copy":{
+    "./public/assets/fonts": [
+      "./resources/assets/vendors/bootstrap/fonts/*",
+      "./resources/assets/vendors/font-awesome/fonts/*"
+    ],
+    "./public/assets/images":[
+      "./resources/assets/images/*"
+    ],
+    "./public/assets/css": [
+      "./resources/assets/vendors/iCheck/skins/minimal/grey.png",
+      "./resources/assets/vendors/iCheck/skins/minimal/grey@2x.png"
+    ]
+  },
   "build": {
-    "js" :"public/assets/js",
-    "css": "./public/assets/css",
-    "fonts": "./public/assets/fonts",
-    "images": "./public/assets/images"
+    "js" :"./public/assets/js",
+    "css": "./public/assets/css"
   }
 }

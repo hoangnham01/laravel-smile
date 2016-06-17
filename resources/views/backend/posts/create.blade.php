@@ -44,7 +44,6 @@
                 <div class="ln_solid"></div>
                 <div class="form-group">
                   <div class="col-xs-12">
-                    <input type="hidden" name="status" value="{{ POST_STATUS_ACTIVATED }}">
                     <button type="reset" class="btn btn-primary">Cancel</button>
                     <button type="submit" class="btn btn-success">Submit</button>
                   </div>
@@ -70,7 +69,7 @@
                               @if(old('options_layout') == $key) selected="selected" @endif>{{ $item }}</option>
                     @endforeach
                   </select>
-                  {!! formAlertError('category_id') !!}
+                  {!! formAlertError('options_layout') !!}
                 </div>
                 <div class="control-group">
                   <label>Tags</label>
@@ -87,6 +86,19 @@
                         <input type="file" name="thumbnail"></span>
                       <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                     </div>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label>Visibility</label>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" class="minimal" name="status" {{ old('status', POST_STATUS_PUBLIC) != POST_STATUS_PRIVATE ? "checked" : "" }} value="{{ POST_STATUS_PUBLIC }}"> Public
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" class="minimal" name="status" {{ old('status', POST_STATUS_PUBLIC) == POST_STATUS_PRIVATE ? "checked" : "" }} value="{{ POST_STATUS_PRIVATE }}">  Private
+                    </label>
                   </div>
                 </div>
               </div>
