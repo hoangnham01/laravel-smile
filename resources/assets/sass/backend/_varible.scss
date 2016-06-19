@@ -1,0 +1,454 @@
+
+$color_pickled_bluewood_approx: #2a3f54;
+$color_gray_nurse_approx: #eaeaea;
+$color_mountain_meadow_approx: #1abb9c;
+$color_fiord_approx: #3e5367;
+$white: #fff;
+$black: #000;
+$color_pickled_bluewood_44_approx: rgba(52, 73, 94, 0.44);
+$color_pink_swan_approx: #bab8b8;
+$color_athens_gray_approx: #ecf0f1;
+$color_ghost_approx: #c4cfda;
+$color_gallery_approx: #ededed;
+$color_gallery_approx2: #f0f0f0;
+$color_geyser_approx: #d9dee4;
+$color_black_haze_approx: #f7f7f7;
+$color_curious_blue_approx: #3498db;
+$color_wisteria_approx: #9b59b6;
+$color_opal_approx: #9cc2cb;
+$color_cinnabar_approx: #e74c3c;
+$color_bermuda_gray_approx: #73879c;
+$color_tree_poppy_approx: #f39c12;
+$color_shakespeare_approx: #50c1cf;
+$color_submarine_approx: #bdc3c7;
+$color_kashmir_blue_approx: #5a738e;
+$color_wild_sand_approx: #f2f5f7;
+$white_6: rgba(255, 255, 255, 0.06);
+$color_mercury_approx: #e7e7e7;
+$white_5: rgba(255, 255, 255, 0.05);
+$black_25: rgba(0, 0, 0, 0.25);
+$white_16: rgba(255, 255, 255, 0.16);
+$color_abbey_approx: #515356;
+$black_7_5: rgba(0, 0, 0, 0.075);
+$color_mercury_49_approx: rgba(221, 226, 232, 0.49);
+$color_santas_gray_approx: #93a2b2;
+$white_75: rgba(255, 255, 255, 0.75);
+$color_pumice_approx: #c5c7cb;
+$color_whisper_approx: #f5f7fa;
+$color_celeste_approx: #ccc;
+$color_fuscous_gray_approx: #555;
+$color_alto_approx: #ddd;
+$gallery: #efefef;
+$color_flush_mahogany_approx: #c0392b;
+$color_mystic_approx: #e6e9ed;
+$color_silver_approx: #bdbdbd;
+$mercury: #e5e5e5;
+$color_waterloo__approx: #768399;
+$color_bermuda_gray_36_approx: rgba(115, 135, 156, 0.36);
+$color_keppel_59_approx: rgba(38, 185, 154, 0.59);
+$color_alto_78_approx: rgba(221, 221, 221, 0.78);
+$color_pickled_bluewood_94_approx: rgba(52, 73, 94, 0.94);
+$color_keppel_7_approx: rgba(38, 185, 154, 0.07);
+$color_keppel_11_approx: rgba(38, 185, 154, 0.11);
+$color_keppel_16_approx: rgba(38, 185, 154, 0.16);
+$color_keppel_40_approx: rgba(38, 185, 154, 0.40);
+$red: #ff0000;
+$color_mountain_mist_approx: #999;
+$color_woodsmoke_approx: #111;
+$color_storm_dust_approx: #666;
+$color_silver_chalice_approx: #aaa;
+$color_tundora_approx: #444;
+$color_star_dust_approx: #a19b9e;
+$color_jordy_blue_approx: #99b3ff;
+$color_pigeon_post_approx: #b0bed9;
+$color_rock_blue_approx: #9fafd1;
+$color_portage_approx: #8080ff;
+$color_blue_chalk_approx: #e5e5ff;
+$color_concrete_approx: #f3f3f3;
+$color_seagull_approx: #79c3df;
+$color_loblolly_approx: #c1cdcd;
+$color_pelorous_approx: #33a1c9;
+$color_regent_st_blue_approx: #abd9ea;
+$color_boulder_approx: #757679;
+$color_big_stone_approx: #172d44;
+$color_bombay_approx: #adb2b5;
+$color_shuttle_gray_approx: #5e6974;
+$color_masala_41_approx: rgba(58, 58, 58, 0.41);
+$white_80: rgba(255, 255, 255, 0.8);
+$black_10: rgba(0, 0, 0, 0.1);
+$black_15: rgba(0, 0, 0, 0.15);
+$color_silver_sand_30_approx: rgba(194, 194, 194, 0.3);
+$color_boston_blue_approx: #428bca;
+$color_scooter_approx: #39b3d7;
+$alto: #dbdbdb;
+$color_niagara_approx: #169f85;
+$color_mine_shaft_approx: #333;
+$color_mischka_approx: #ccd0d7;
+$color_hippie_green_approx: #468847;
+$color_willow_brook_approx: #dff0d8;
+$color_beryl_green_approx: #d6e9c6;
+$color_chestnut_approx: #b94a48;
+$color_vanilla_ice_approx: #f2dede;
+$color_bridesmaid_approx: #faedec;
+$color_flame_pea_approx: #e85445;
+$color_fuzzy_wuzzy_brown_approx: #ce5454;
+$color_tapa_approx: #777;
+$wild_sand: #f4f4f4;
+$color_dodger_blue_approx: #3399ff;
+$color_keppel_approx: #26b99a;
+$color_blue_bayoux_approx: #4b5f71;
+$color_river_bed_approx: #394d5f;
+$alabaster: #fafafa;
+$black_12_5: rgba(0, 0, 0, 0.125);
+$color_nobel_approx: #b3b3b3;
+$white_20: rgba(255, 255, 255, .2);
+$black_5: rgba(0, 0, 0, .05);
+$color_alabaster_approx: #f9f9f9;
+$color_catskill_white_approx: #f1f6f7;
+$color_sushi_approx: #82ad2b;
+$color_cosmos_approx: #fbd8db;
+$color_tamarillo_approx: #90111a;
+$color_iron_approx: #d3d6da;
+$color_quill_gray_approx: #d2d3d2;
+$color_cararra_approx: #ececec;
+$color_downy_16_approx: rgba(101, 204, 182, 0.16);
+$color_log_cabin_approx: #222;
+$color_mine_shaft_28_approx: rgba(51, 51, 51, 0.28);
+$color_danube_approx: #5b90bf;
+$black_30: rgba(0, 0, 0, .3);
+$black_35: rgba(0, 0, 0, 0.35);
+$black_50: rgba(0, 0, 0, 0.5);
+$periwinkle: #ccf;
+$color_concrete_80_approx: rgba(243, 242, 243, 0.8);
+$color_pale_slate_80_approx: rgba(195, 194, 196, 0.8);
+$color_bon_jour_approx: #dfdfdf;
+$color_gray_approx: rgb(126, 126, 126);
+$white_100: rgba(255, 255, 255, 1);
+$black_8: rgba(0, 0, 0, 0.08);
+$color_bouquet_approx: #a97aad;
+$color_purple_mountains_majesty_approx: #a878af;
+$color_white_lilac_approx: rgb(247, 249, 250);
+$color_cerulean_approx: #00aeef;
+$black_7_45098: rgba(0, 0, 0, 0.0745098);
+$color_keppel_88_approx: rgba(38, 185, 154, 0.88);
+$color_curious_blue_88_approx: rgba(52, 152, 219, 0.88);
+$color_tree_poppy_88_approx: rgba(243, 156, 18, 0.88);
+$color_cinnabar_88_approx: rgba(231, 76, 60, 0.88);
+$color_pickled_bluewood_88_approx: rgba(52, 73, 94, 0.88);
+$color_nile_blue_approx: #213345;
+$black_17_5: rgba(0, 0, 0, .175);
+
+//fonts
+$font_0: Helvetica Neue;
+$font_1: Roboto;
+$font_2: Arial;
+$font_3: Droid Sans;
+$font_4: sans-serif;
+$font_5: FontAwesome;
+$font_6: helvetica;
+$font_7: Georgia;
+$font_8: serif;
+$font_9: Helvetica;
+
+//urls
+$url_0: url(../images/back_disabled.png);
+$url_1: url(../images/back_enabled.png);
+$url_2: url(../images/back_enabled_hover.png);
+$url_3: url(../images/forward_disabled.png);
+$url_4: url(../images/forward_enabled.png);
+$url_5: url(../images/forward_enabled_hover.png);
+$url_6: url(../images/loading.gif);
+$url_7: url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png);
+$button_image_URL: url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png);
+
+//@extend-elements
+//original selectors
+//.nav-sm ul.nav.child_menu ul, .nav-sm .nav.side-menu li.active-sm ul ul
+%extend_1 {
+  position: static;
+  width: 200px;
+  background: none;
+}
+
+//original selectors
+//.col-md-55, .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12
+%extend_2 {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+//original selectors
+//.navbar-brand, .navbar-nav >li >a
+%extend_3 {
+  font-weight: 500;
+  color: $color_athens_gray_approx !important;
+  margin-left: 0 !important;
+  line-height: 32px;
+}
+
+//original selectors
+//button.DTTT_button, div.DTTT_button, a.DTTT_button
+%extend_4 {
+  border: 1px solid $color_mercury_approx !important;
+  background: $color_mercury_approx !important;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: none !important;
+}
+
+//original selectors
+//.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next
+%extend_5 {
+  height: 19px;
+  float: left;
+  cursor: pointer;
+  color: $color_woodsmoke_approx !important;
+}
+
+//original selectors
+//.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active
+%extend_6 {
+  border: 1px solid $color_silver_chalice_approx;
+  padding: 2px 5px;
+  margin: 0 3px;
+  cursor: pointer;
+}
+
+//original selectors
+//.tile-stats .count, .tile-stats h3, .tile-stats p
+%extend_7 {
+  position: relative;
+  margin: 0;
+  margin-left: 10px;
+  z-index: 5;
+  padding: 0;
+}
+
+//original selectors
+//.bad input, .bad select, .bad textarea
+%extend_8 {
+  border: 1px solid $color_fuzzy_wuzzy_brown_approx;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 0 4px -2px $color_fuzzy_wuzzy_brown_approx;
+  position: relative;
+  left: 0;
+}
+
+//original selectors
+//.btn-dark:hover, .btn-dark:focus, .btn-dark:active, .btn-dark.active, .open .dropdown-toggle.btn-dark
+%extend_9 {
+  color: $white;
+  background-color: $color_river_bed_approx;
+  border-color: $color_river_bed_approx;
+}
+
+//original selectors
+//ul.messages li img.avatar, img.avatar
+%extend_10 {
+  height: 32px;
+  width: 32px;
+  float: left;
+  display: inline-block;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 2px;
+  padding: 2px;
+  background: $color_black_haze_approx;
+  border: 1px solid $color_mercury_approx;
+}
+
+//original selectors
+//.ui-ribbon-container .ui-ribbon:after, .ui-ribbon-container .ui-ribbon:before
+%extend_11 {
+  position: absolute;
+  content: " ";
+  line-height: 0;
+  border-top: 2px solid $color_fuscous_gray_approx;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+//original selectors
+//.view .mask, .view .content
+%extend_12 {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+//original selectors
+//.sideways >li.active >a, .sideways >li.active >a:hover, .sideways >li.active >a:focus
+%extend_13 {
+  border-bottom-color: transparent;
+  border-right-color: $color_alto_approx;
+  border-left-color: $color_alto_approx;
+}
+
+//original selectors
+//.registration_form, .login_form
+%extend_14 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+//original selectors
+//#signup:target ~.login_wrapper .registration_form, #signin:target ~.login_wrapper .login_form
+%extend_15 {
+  z-index: 22;
+  animation-name: fadeInLeft;
+  animation-delay: .1s;
+}
+
+//original selectors
+//.clearfix:after, form:after
+%extend_16 {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+//original selectors
+//.login_content h1:before, .login_content h1:after
+%extend_17 {
+  width: 27%;
+  content: "";
+  height: 1px;
+  position: absolute;
+  top: 10px;
+  width: 20%;
+}
+
+//original selectors
+//.login_content form input[type="text"], .login_content form input[type="email"], .login_content form input[type="password"]
+%extend_18 {
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 3px;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 1px 0 $white, 0 -2px 5px $black_8 inset;
+  border: 1px solid $color_pumice_approx;
+  color: $color_tapa_approx;
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+//original selectors
+//.login_content form input[type="text"]:focus, .login_content form input[type="email"]:focus, .login_content form input[type="password"]:focus
+%extend_19 {
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 0 2px $color_bouquet_approx inset;
+  background-color: $white;
+  border: 1px solid $color_purple_mountains_majesty_approx;
+  outline: none;
+}
+
+//original selectors
+//.select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple
+%extend_20 {
+  background-color: $white;
+  border: 1px solid $color_celeste_approx;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 0;
+  min-height: 38px;
+}
+
+//original selectors
+//.select2-container--default .select2-selection--multiple .select2-selection__choice, .select2-container--default .select2-selection--multiple .select2-selection__clear
+%extend_21 {
+  margin-top: 2px;
+  border: none;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 0;
+  padding: 3px 5px;
+}
+
+//original selectors
+//.cropper .img-container, .cropper .img-preview
+%extend_22 {
+  background-color: $color_black_haze_approx;
+  width: 100%;
+  text-align: center;
+}
+
+//original selectors
+//.wizard_horizontal ul.wizard_steps li a, .wizard_horizontal ul.wizard_steps li:hover
+%extend_23 {
+  display: block;
+  position: relative;
+  filter: alpha(opacity= 100);
+  opacity: 1;
+  color: $color_storm_dust_approx;
+}
+
+//original selectors
+//.wizard_verticle ul.wizard_steps li a, .wizard_verticle ul.wizard_steps li:hover
+%extend_24 {
+  display: block;
+  position: relative;
+  filter: alpha(opacity= 100);
+  opacity: 1;
+  color: $color_storm_dust_approx;
+}
+
+//original selectors
+//.alert-danger, .alert-error
+%extend_25 {
+  color: $color_gallery_approx;
+  background-color: $color_cinnabar_88_approx;
+  border-color: $color_cinnabar_88_approx;
+}
+
+//original selectors
+//.daterangepicker td, .daterangepicker th
+%extend_26 {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+//original selectors
+//.daterangepicker select.monthselect, .daterangepicker select.yearselect
+%extend_27 {
+  font-size: 12px;
+  padding: 1px;
+  height: auto;
+  margin: 0;
+  cursor: default;
+  height: 30px;
+  border: 1px solid $color_bombay_approx;
+  line-height: 30px;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 0 !important;
+}
+
+//original selectors
+//.daterangepicker .daterangepicker_start_input label, .daterangepicker .daterangepicker_end_input label
+%extend_28 {
+  color: $color_mine_shaft_approx;
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 2px;
+  //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  text-shadow: $white 1px 1px 0;
+  text-transform: uppercase;
+  width: 74px;
+}
+
+//original selectors
+//.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover
+%extend_29 {
+  background: $color_blue_bayoux_approx;
+  border: 1px solid $color_blue_bayoux_approx;
+  color: $white;
+}
+

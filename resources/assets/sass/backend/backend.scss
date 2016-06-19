@@ -1,0 +1,88 @@
+@import "varible";
+@import "mixins";
+
+@import "custom/account";
+@import "custom/cropper";
+@import "custom/daterangepicker";
+@import "custom/form";
+@import "custom/header";
+@import "custom/other";
+@import "custom/PNotify";
+@import "custom/progressbar";
+@import "custom/menu";
+@import "custom/SmartWizard";
+@import "custom/accordion";
+@import "custom/widget";
+
+
+
+
+@import "theme";
+
+.pagination{
+  margin: 0;
+}
+td,th{
+  &.numerical-order{
+    text-align: center;
+    width: 60px;
+  }
+  &.cell-action{
+    width: 90px;
+  }
+}
+.smile-table{
+  tbody>tr>th,
+  tbody>tr>td{
+    vertical-align: middle;
+  }
+}
+td{
+  &.user-media{
+    img{
+      width: 65px;
+      height: 65px;
+      max-width: 100%;
+      border-radius: 50%;
+    }
+  }
+  &.post-media{
+    img{
+      width: 65px;
+    }
+  }
+}
+.parsley-required{
+  text-align: left;
+}
+table tr th,
+table tr td{
+  &.cell-status{
+    text-align: center;
+    width: 90px;
+  }
+  &.cell-action{
+    text-align: center;
+  }
+}
+.tag:after{
+  display: none;
+}
+.fileinput{
+  &.block{
+    display: block;
+    margin-top: 7px;
+  }
+  .fileinput-preview{
+    height: auto;
+    display: block;
+  }
+}
+.fileinput-preview{
+  &:empty{
+    display: none;
+  }
+  img{
+    max-width: 100%;
+  }
+}
