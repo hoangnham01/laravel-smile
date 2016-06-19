@@ -43,4 +43,11 @@ return array(
             ),
         ),
     ),
+    array(
+        'title'  => 'Logs',
+        'lang'   => 'backend.menus.logs.title',
+        'route' => 'backend.posts.index',
+        'icon'   => 'fa fa-bug',
+        'active' => 'logs*',
+    ),
 );

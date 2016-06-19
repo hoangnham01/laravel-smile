@@ -55,7 +55,7 @@
                     <option>{{ trans('common.choose_option') }}</option>
                     @foreach($categories as $item)
                       <option value="{{ $item['id'] }}"
-                              @if(old('category_id', $post->category_id) == $item['id']) selected="selected" @endif>{{ $item['mask'] . $item['title'] }}</option>
+                              @if(old('category_id', $post->category_id) == $item['id']) selected="selected" @endif>{{ ($item['level'] > 0 ? '|' : '' ) . str_repeat('--', $item['level']) . $item['title'] }}</option>
                     @endforeach
                   </select>
                   {!! formAlertError('category_id') !!}

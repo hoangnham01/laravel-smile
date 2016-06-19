@@ -21,7 +21,7 @@ class CreateTablePosts extends Migration
             $table->string('thumbnail', 255)->nulltable();
             $table->text('content');
             $table->integer('category_id')->default(0);
-            $table->smallInteger('status')->default(POST_STATUS_ACTIVATED);
+            $table->smallInteger('status')->default(POST_STATUS_PUBLIC);
             $table->text('options')->nulltable();
             $table->timestamps();
         });

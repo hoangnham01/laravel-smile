@@ -113,7 +113,6 @@ gulp.task('watch', function () {
     for(var key in _config.copy){
         copy = copy.concat(_config.copy[key]);
     }
-    console.log(copy);
     gulp.watch(copy, ['assets::copy']);
 
     // list of source file to watch for live reload
